@@ -4,6 +4,7 @@
 
 <template>
   <div class="c-home">
+    test
     Home
   </div>
 </template>
