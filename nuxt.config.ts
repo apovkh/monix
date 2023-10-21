@@ -21,8 +21,8 @@ export default defineNuxtConfig({
 	},
 	pwa: {
 		manifest: {
-			name: 'Monix',
-			short_name: 'Monix App',
+			name: 'Monix Application',
+			short_name: 'Monix',
 			theme_color: '#500',
 			lang: 'en'
 		}
