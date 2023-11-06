@@ -1,8 +1,10 @@
 export default defineNuxtConfig({
 	srcDir: './src',
+	ssr: false,
 	modules: [
 		'nuxt-windicss',
-		'nuxt-vitest'
+		'nuxt-vitest',
+		'@kevinmarrec/nuxt-pwa'
 	],
 	css: [
 		'vuetify/lib/styles/main.sass',
@@ -14,6 +16,17 @@ export default defineNuxtConfig({
 	vite: {
 		define: {
 			'process.env.DEBUG': false
+		}
+	},
+	pwa: {
+		manifest: {
+			name: 'Monix',
+			short_name: 'Monix',
+			theme_color: '#fff',
+			lang: 'en'
+		},
+		workbox: {
+			enabled: true
 		}
 	}
 })
