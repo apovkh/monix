@@ -45,6 +45,7 @@
     "@pinia/nuxt": "^0.5.1",
     "@vueuse/core": "^10.5.0",
     "chart.js": "^4.4.0",
+    "localbase": "^0.7.5",
     "pinia": "^2.1.7",
     "uuid": "^9.0.1",
     "vue-chartjs": "^5.2.0",
