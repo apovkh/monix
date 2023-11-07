@@ -43,8 +43,12 @@ export const useWalletStore = defineStore('wallet', {
 			)
 		},
 		async getBalance () {
-			const dbBalance = await db.collection('balance').get()
-			this.balance = dbBalance
+			try {
+				const dbBalance = await db.collection('balance').get()
+				this.balance = dbBalance
+			} catch (err) {
+				console.error('error db getBalance: ', err)
+			}
 		}
 	},
 	getters: {
