@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import { computed, reactive, ref, watch } from 'vue'
-import { v4 as uuidv4 } from 'uuid'
+import { ref } from 'vue'
 import {
 	VBtn,
 	VIcon,
@@ -11,7 +10,6 @@ import {
 } from 'vuetify/components'
 
 import {
-	mdiFood,
 	mdiMinus,
 	mdiPlus
 } from '@mdi/js'
@@ -22,10 +20,10 @@ import { useWalletStore } from '../stores/wallet'
 const wallerStore = useWalletStore()
 const navigation = ref(null)
 const isOpenDialog = ref<boolean>(false)
-const isIncrease = ref<boolean>(false)
+const isIncome = ref<boolean>(false)
 
-const onChangeBalanceClick = (increase: boolean): void => {
-	isIncrease.value = increase
+const onChangeBalanceClick = (income: boolean): void => {
+	isIncome.value = income
 	isOpenDialog.value = true
 }
 </script>
@@ -71,16 +69,18 @@ const onChangeBalanceClick = (increase: boolean): void => {
       </div>
     </div>
 
-    <div class="flex-grow-1 overflow-auto">
-      <VWindow v-model="navigation">
-        <VWindowItem
-          v-for="nav in wallerStore.navigations"
-          :key="nav.value"
-          :value="nav.value"
-        >
-          <Component :is="nav.component" />
-        </VWindowItem>
-      </VWindow>
+    <div class="flex-grow-1 relative">
+      <div class="absolute overflow-y-auto inset-0">
+        <VWindow v-model="navigation">
+          <VWindowItem
+            v-for="nav in wallerStore.navigations"
+            :key="nav.value"
+            :value="nav.value"
+          >
+            <Component :is="nav.component" />
+          </VWindowItem>
+        </VWindow>
+      </div>
     </div>
 
     <div class="tabs shadow shadow-sm shadow-light-500">
@@ -102,7 +102,7 @@ const onChangeBalanceClick = (increase: boolean): void => {
 
   <CDialog
     v-model="isOpenDialog"
-    :increase="isIncrease"
+    :income="isIncome"
   />
 </template>
 

@@ -10,25 +10,22 @@ import {
 	VTextField
 } from 'vuetify/components'
 
-import {
-	mdiHandCoinOutline
-} from '@mdi/js'
 import { useDateFormat, useVModel } from '@vueuse/core'
 
 import { useCategory } from '../../composables/useCategory'
 import { useWalletStore } from '../../stores/wallet'
 import {
 	CATEGORY_TYPES_COSTS,
-	CATEGORY_TYPES_INCREASE,
+	CATEGORY_TYPES_INCOME,
 	type IBalanceItem
 } from '../../types/index'
 
 const props = withDefaults(
 	defineProps<{
-		increase?: boolean
+		income?: boolean
   }>(),
 	{
-		increase: true
+		income: true
 	}
 )
 defineEmits<{
@@ -38,12 +35,9 @@ defineEmits<{
 const proxiedModelValue = useVModel(props, 'modelValue')
 const wallerStore = useWalletStore()
 const categoryComposable = useCategory()
+
 const categoryTypes = reactive(Object.values(CATEGORY_TYPES_COSTS))
-const selectedCategory = ref(
-	props.increase
-		? CATEGORY_TYPES_INCREASE.Increase
-		: Object.values(CATEGORY_TYPES_COSTS)[0]
-)
+const selectedCategory = ref(CATEGORY_TYPES_COSTS.Food)
 
 const amount = ref<number>(0)
 const datePicker = ref(new Date())
@@ -54,13 +48,13 @@ const dateFormat = computed(() => {
 })
 
 const actionButtonText = computed((): string => {
-	return props.increase
+	return props.income
 		? 'Add to balance'
 		: 'Add costs'
 })
 
 const titleText = computed((): string => {
-	return props.increase
+	return props.income
 		? 'Balance'
 		: 'Costs'
 })
@@ -73,17 +67,21 @@ const onChangeBalance = (): void => {
 	isError.value = false
 
 	wallerStore.changeBalance({
-		increase: props.increase,
-		amount: props.increase ? amount.value : `-${amount.value}`,
+		income: props.income,
+		amount: props.income ? amount.value : `-${amount.value}`,
 		date: dateFormat.value,
 		type: {
-			icon: props.increase
-				? mdiHandCoinOutline
-				: categoryComposable.value[selectedCategory.value].icon,
-			name: selectedCategory.value.toString()
+			icon: categoryComposable.value[
+				props.income
+					? CATEGORY_TYPES_INCOME.Income
+					: selectedCategory.value
+			].icon,
+			name: props.income
+				? CATEGORY_TYPES_INCOME.Income
+				: selectedCategory.value.toString()
 		},
 		id: uuidv4()
-	})
+	} as IBalanceItem)
 
 	proxiedModelValue.value = false
 }
@@ -121,7 +119,7 @@ watch(amount, (value) => {
 					/>
 
 					<VAutocomplete
-						v-if="!increase"
+						v-if="!income"
 						v-model="selectedCategory"
 						:items="categoryTypes"
 						label="Category"

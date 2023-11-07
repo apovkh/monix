@@ -4,13 +4,14 @@ import {
 	mdiDumbbell,
 	mdiFood,
 	mdiGift,
+	mdiHandCoinOutline,
 	mdiHomeCity,
 	mdiPillMultiple,
 	mdiSilverwareForkKnife,
 	mdiTrainCar
 } from '@mdi/js'
 
-import { CATEGORY_TYPES_COSTS } from '../types/index'
+import { CATEGORY_TYPES_COSTS, CATEGORY_TYPES_INCOME } from '../types/index'
 
 export function useCategory (): string {
 	return computed(() => ({
@@ -41,6 +42,10 @@ export function useCategory (): string {
 		[CATEGORY_TYPES_COSTS.Restaurants]: {
 			color: '#F6635C',
 			icon: mdiSilverwareForkKnife
+		},
+		[CATEGORY_TYPES_INCOME.Income]: {
+			color: '#00ff00',
+			icon: mdiHandCoinOutline
 		}
 	}))
 }
