@@ -16,7 +16,7 @@ export interface IBalanceItem {
   increase: boolean
 	date: string
 	type: {
-		name: string
+		name: CATEGORY_TYPES_COSTS
 		icon?: string
 	}
 	amount: number | string
