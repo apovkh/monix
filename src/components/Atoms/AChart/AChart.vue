@@ -3,8 +3,9 @@ import { computed } from 'vue'
 import { ArcElement, Chart as ChartJS, Legend, Tooltip } from 'chart.js'
 import { Bar, Doughnut } from 'vue-chartjs'
 
-import { useCategory } from '../../composables/useCategory'
-import { useWalletStore } from '../../stores/wallet'
+import { useCategory } from '../../../composables/useCategory'
+import { useWalletStore } from '../../../stores/wallet'
+
 ChartJS.register(ArcElement, Tooltip, Legend)
 
 const wallerStore = useWalletStore()
@@ -20,7 +21,7 @@ const balanceCount = computed(() => {
 	return existCatgories.value.map(item => {
 		return wallerStore.balance.filter(i => i.type.name === item)
 			.reduce((acc, bal) => {
-				return acc + Math.abs(bal.amount)
+				return acc + Math.abs(Number(bal.amount))
 			}, 0)
 	})
 })
@@ -56,10 +57,10 @@ const options = {
 			v-if="!displayChart"
 			class="text-center"
 		>
-		Data is empty
+		Дані відсутні
 	</div>
 		<template v-if="displayChart">
-			<h1 class="mb-5 text-left text-xl">Costs by chart</h1>
+			<h1 class="mb-5 text-left text-xl">Графік витрат</h1>
 			<div>
 				<Doughnut
 					:data="chartData"

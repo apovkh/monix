@@ -2,11 +2,12 @@ import { defineStore } from 'pinia'
 
 import {
 	mdiChartArc,
-	mdiFormatListBulleted
+	mdiFormatListBulleted,
+	mdiHandCoinOutline
 } from '@mdi/js'
 
-import { CChart, CTable } from '../components'
-import type { IBalanceItem } from '../types/index'
+import { AChart, MBalanceTable, MIncomeTable } from '../components'
+import type { IBalanceItem, INavigationItem } from '../types/index'
 import Localbase from '../utils/localbase/index'
 
 const db = new Localbase('monix')
@@ -19,15 +20,21 @@ export const useWalletStore = defineStore('wallet', {
 				icon: mdiFormatListBulleted,
 				active: true,
 				value: 1,
-				component: CTable
+				component: MBalanceTable
+			},
+			{
+				icon: mdiHandCoinOutline,
+				active: false,
+				value: 3,
+				component: MIncomeTable
 			},
 			{
 				icon: mdiChartArc,
 				active: false,
 				value: 2,
-				component: CChart
+				component: AChart
 			}
-		]
+		] as INavigationItem[]
 	}),
 	actions: {
 		changeBalance (balanceItem: IBalanceItem) {
