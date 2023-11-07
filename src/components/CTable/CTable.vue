@@ -20,7 +20,7 @@ const wallerStore = useWalletStore()
     rounded
   >
     <thead>
-      <tr>
+      <tr class="text-sm">
         <th class="text-left">
           Category
         </th>
@@ -37,11 +37,24 @@ const wallerStore = useWalletStore()
       <tr
         v-for="item in wallerStore.balance"
         :key="item.date"
-        :class="item.increase ? 'bg-green-darken-4' : ''"
+        :class="[
+          { 'bg-green-darken-4': item.increase },
+          'text-sm'
+        ]"
       >
-        <td><VIcon :icon="item.type.icon" /></td>
-        <td>{{ item.date }}</td>
-        <td>{{ item.amount }} UAH</td>
+        <td class="flex-shrink-0"><VIcon :icon="item.type.icon" /></td>
+        <td>
+          <div class="inline-flex">
+            <span class="flex-shrink-0">{{ item.date }}</span>
+          </div>
+        </td>
+        <td>
+          <div class="inline-flex">
+            <span class="flex-shrink-0">
+              {{ item.amount }} <small class="opacity-50">UAH</small>
+            </span>
+          </div>
+        </td>
         <td class="text-right">
           <VBtn
             variant="text"
