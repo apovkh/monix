@@ -23,7 +23,7 @@ export function useCategory (): string {
 			color: '#8DDFCB',
 			icon: mdiGift
 		},
-		[CATEGORY_TYPES_COSTS.Flat]: {
+		[CATEGORY_TYPES_COSTS.Apartment]: {
 			color: '#F875AA',
 			icon: mdiHomeCity
 		},
