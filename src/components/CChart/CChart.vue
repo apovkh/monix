@@ -5,10 +5,7 @@ import { Bar, Doughnut } from 'vue-chartjs'
 
 import { useCategory } from '../../composables/useCategory'
 import { useWalletStore } from '../../stores/wallet'
-import {
-	CATEGORY_TYPES_COSTS
-} from '../../types/index'
-
+import { CATEGORY_TYPES_COSTS } from '../../types/index'
 ChartJS.register(ArcElement, Tooltip, Legend)
 
 const wallerStore = useWalletStore()
@@ -49,7 +46,7 @@ const options = {
 </script>
 
 <template>
-	<div class="text-center py-10">
+	<div class="text-center p-4">
 		<div
 			v-if="!displayChart"
 			class="text-center"
@@ -57,7 +54,7 @@ const options = {
 		Data is empty
 	</div>
 		<template v-if="displayChart">
-			<h1 class="mb-10">Costs by chart</h1>
+			<h1 class="mb-5 text-left text-xl">Costs by chart</h1>
 			<div>
 				<Doughnut
 					:data="chartData"
