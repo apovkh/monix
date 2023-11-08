@@ -13,8 +13,7 @@ export default defineNuxtConfig({
 	],
 	build: {
 		transpile: [
-			'vuetify',
-			'ordered-uuid'
+			'vuetify'
 		]
 	},
 	vite: {
