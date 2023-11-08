@@ -74,27 +74,27 @@ const displayChart = computed(() => {
 
 const timeFilterData = ref([
 	{
-		label: 'Сьогодні',
+		label: 'Today',
 		value: DATE_TYPES.Today
 	},
 	{
-		label: 'Вчора',
+		label: 'Yesterday',
 		value: DATE_TYPES.Yesterday
 	},
 	{
-		label: 'Тиждень',
+		label: 'Week',
 		value: DATE_TYPES.Week
 	},
 	{
-		label: 'Місяць',
+		label: 'Month',
 		value: DATE_TYPES.Month
 	},
 	{
-		label: 'Рік',
+		label: 'Year',
 		value: DATE_TYPES.Year
 	},
 	{
-		label: 'Весь час',
+		label: 'FullTime',
 		value: DATE_TYPES.FullTime
 	}
 ])
@@ -107,13 +107,13 @@ const options = {
 
 <template>
 	<LSection
-		title="Графік витрат"
-		:subtitle="!displayChart ? 'Дані відсутні' : undefined"
+		title="Costs chart"
+		:subtitle="!displayChart ? 'Data is empty' : undefined"
 	>
 		<LBox>
 			<VSelect
 				v-model="filterDate"
-				label="Фільтр за датою"
+				label="Filter by data"
 				item-title="label"
 				return-object
 				class="max-w-md"

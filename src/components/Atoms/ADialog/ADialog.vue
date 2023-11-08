@@ -50,14 +50,14 @@ const dateFormat = computed(() => {
 
 const actionButtonText = computed((): string => {
 	return props.income
-		? 'Додати прибуток'
-		: 'Додати витрати'
+		? 'Add income'
+		: 'Add costs'
 })
 
 const titleText = computed((): string => {
 	return props.income
-		? 'Прибуток'
-		: 'Витрата'
+		? 'Income'
+		: 'Costs'
 })
 
 const onChangeBalance = (): void => {
@@ -140,7 +140,7 @@ watch(amount, (value) => {
 						color="gray"
 						@click="onCancel"
 					>
-						Скасувати
+						Cancel
 					</VBtn>
           <VBtn
             :rounded="true"

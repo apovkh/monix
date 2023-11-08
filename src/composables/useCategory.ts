@@ -18,42 +18,42 @@ export function useCategory (): string {
 		[CATEGORY_TYPES_COSTS.Food]: {
 			color: '#ECEE81',
 			icon: mdiFood,
-			label: 'Їжа'
+			label: 'Food'
 		},
 		[CATEGORY_TYPES_COSTS.Gift]: {
 			color: '#8DDFCB',
 			icon: mdiGift,
-			label: 'Подарунки'
+			label: 'Gifts'
 		},
 		[CATEGORY_TYPES_COSTS.Apartment]: {
 			color: '#F875AA',
 			icon: mdiHomeCity,
-			label: 'Житло'
+			label: 'Apartment'
 		},
 		[CATEGORY_TYPES_COSTS.Sport]: {
 			color: '#6F61C0',
 			icon: mdiDumbbell,
-			label: 'Спорт'
+			label: 'Sport'
 		},
 		[CATEGORY_TYPES_COSTS.Transport]: {
 			color: '#8BE8E5',
 			icon: mdiTrainCar,
-			label: 'Транспорт'
+			label: 'Transport'
 		},
 		[CATEGORY_TYPES_COSTS.Medicine]: {
 			color: '#F99417',
 			icon: mdiPillMultiple,
-			label: 'Медицина'
+			label: 'Medicine'
 		},
 		[CATEGORY_TYPES_COSTS.Restaurants]: {
 			color: '#F6635C',
 			icon: mdiSilverwareForkKnife,
-			label: 'Ресторани'
+			label: 'restaurants'
 		},
 		[CATEGORY_TYPES_INCOME.Income]: {
 			color: '#00ff00',
 			icon: mdiHandCoinOutline,
-			label: 'Надходження'
+			label: 'Income'
 		}
 	}))
 }

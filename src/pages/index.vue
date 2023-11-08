@@ -38,7 +38,7 @@ onMounted(async () => {
     <div class="main">
       <div class="bg-indigo py-4">
         <LBox>
-          <h2 class="text-4xl text-center mb-4 title-1">Баланс</h2>
+          <h2 class="text-4xl text-center mb-4 title-1">Balance</h2>
           <div class="flex gap-2 items-center justify-between">
             <VBtn
               rounded="xl"

@@ -25,7 +25,7 @@ const wallerStore = useWalletStore()
 <template>
   <LSection
 		:title="title"
-		:subtitle="!data.length ? 'Список порожній' : undefined"
+		:subtitle="!data.length ? 'List is empty' : undefined"
 	>
 		<VTable
       v-if="data.length"
@@ -35,13 +35,13 @@ const wallerStore = useWalletStore()
       <thead>
         <tr class="text-sm">
           <th class="text-left">
-            Категорія
+            Category
           </th>
           <th class="text-left">
-            Дата
+            Data
           </th>
           <th class="text-left">
-            Сума
+            Amount
           </th>
           <th />
         </tr>

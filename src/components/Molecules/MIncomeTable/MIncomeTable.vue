@@ -13,7 +13,7 @@ const incomeData = computed(() => wallerStore.balance
 <template>
   <ATable
 		:data="incomeData"
-		title="Список прибутків"
+		title="Income list"
 	/>
 </template>
 
