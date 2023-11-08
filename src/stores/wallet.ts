@@ -6,7 +6,8 @@ import {
 	mdiHandCoinOutline
 } from '@mdi/js'
 
-import { AChart, MBalanceTable, MIncomeTable } from '../components'
+import { AChart } from '../components'
+import { MBalanceTable, MIncomeTable } from '../components/Molecules'
 import type { IBalanceItem, INavigationItem } from '../types/index'
 import Localbase from '../utils/localbase/index'
 
