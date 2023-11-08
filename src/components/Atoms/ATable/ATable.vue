@@ -10,7 +10,6 @@ import {
 } from '@mdi/js'
 import { useDateFormat } from '@vueuse/core'
 
-import { LSection } from '../../../components/layouts'
 import { useWalletStore } from '../../../stores/wallet'
 import type { IBalanceItem } from '../../../types/index'
 
@@ -23,10 +22,6 @@ const wallerStore = useWalletStore()
 </script>
 
 <template>
-  <LSection
-		:title="title"
-		:subtitle="!data.length ? 'List is empty' : undefined"
-	>
 		<VTable
       v-if="data.length"
       fixed-header
@@ -84,7 +79,6 @@ const wallerStore = useWalletStore()
         </tr>
       </tbody>
     </VTable>
-	</LSection>
 </template>
 
 <style scoped>

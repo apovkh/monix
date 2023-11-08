@@ -6,7 +6,7 @@ import {
 	VSelect
 } from 'vuetify/components'
 
-import { LBox, LSection } from '../../../components/layouts'
+import { LBox } from '../../../components/layouts'
 import { useCategory } from '../../../composables/useCategory'
 import { useWalletStore } from '../../../stores/wallet'
 import { DATE_TYPES, type IBalanceItem } from '../../../types/'
@@ -106,10 +106,6 @@ const options = {
 </script>
 
 <template>
-	<LSection
-		title="Costs chart"
-		:subtitle="!displayChart ? 'Data is empty' : undefined"
-	>
 		<LBox>
 			<VSelect
 				v-model="filterDate"
@@ -126,7 +122,6 @@ const options = {
 				/>
 			</div>
 		</LBox>
-	</LSection>
 </template>
 
 <style scoped>
