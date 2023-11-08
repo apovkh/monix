@@ -1,4 +1,4 @@
-<script lang="ts" setup>
+<script lang="ts">
 import { LBox } from './'
 defineProps<{
   title?: string
