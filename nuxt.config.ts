@@ -36,10 +36,5 @@ export default defineNuxtConfig({
 		workbox: {
 			enabled: true
 		}
-	},
-	alias: {
-		'@types': resolve('../src/types/'),
-		'@stores': resolve('../src/stores/'),
-		'@composables': resolve('../src/composables/')
 	}
 })
