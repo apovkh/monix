@@ -6,7 +6,7 @@ import {
 	VSelect
 } from 'vuetify/components'
 
-import { LBox, LSection } from '../../../components/layouts'
+import { LBox, LSection } from '../../../components/Layouts'
 import { useCategory } from '../../../composables/useCategory'
 import { useWalletStore } from '../../../stores/wallet'
 import { DATE_TYPES, type IBalanceItem } from '../../../types/'

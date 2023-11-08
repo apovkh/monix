@@ -4,9 +4,6 @@
 <template>
   <div class="l-wrapper">
     <header class="l-header">
-      <!-- <LBox> -->
-        <!-- <LHeader /> -->
-      <!-- </LBox> -->
     </header>
 
     <main class="l-main h-full flex">
