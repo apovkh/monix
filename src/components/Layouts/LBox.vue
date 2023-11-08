@@ -10,8 +10,8 @@
 
 <style scoped>
   .l-box {
-    /* @apply */
-      /* px-2 */
-    /* ; */
+    @apply
+      px-2
+    ;
   }
 </style>

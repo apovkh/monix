@@ -8,7 +8,9 @@ import {
 import {
 	mdiDeleteEmpty
 } from '@mdi/js'
+import { useDateFormat } from '@vueuse/core'
 
+import { LSection } from '../../../components/layouts'
 import { useWalletStore } from '../../../stores/wallet'
 import type { IBalanceItem } from '../../../types/index'
 
@@ -21,72 +23,68 @@ const wallerStore = useWalletStore()
 </script>
 
 <template>
-  <div class="px-4 my-5">
-    <h2
-      v-if="title"
-      class="text-lg"
-    >{{ title }}</h2>
-  </div>
-
-  <VTable
-    v-if="data.length"
-    fixed-header
-    rounded
-  >
-    <thead>
-      <tr class="text-sm">
-        <th class="text-left">
-          Категорія
-        </th>
-        <th class="text-left">
-          Дата
-        </th>
-        <th class="text-left">
-          Сума
-        </th>
-        <th />
-      </tr>
-    </thead>
-    <tbody>
-      <tr
-        v-for="item in data"
-        :key="item.date"
-        :class="[
-          { 'bg-green-darken-4': item.income },
-          'text-sm'
-        ]"
-      >
-        <td class="flex-shrink-0"><VIcon :icon="item.type.icon" /></td>
-        <td>
-          <div class="inline-flex">
-            <span class="flex-shrink-0">{{ item.date }}</span>
-          </div>
-        </td>
-        <td>
-          <div class="inline-flex">
-            <span class="flex-shrink-0">
-              {{ item.amount }} <small class="opacity-50">UAH</small>
-            </span>
-          </div>
-        </td>
-        <td class="text-right">
-          <VBtn
-            variant="text"
-            @click="wallerStore.removeBalance(item.id)"
-          >
-            <VIcon
-              color="red"
-              :icon="mdiDeleteEmpty"
-            />
-          </VBtn>
-        </td>
-      </tr>
-    </tbody>
-  </VTable>
-  <div
-    v-if="!data.length"
-    class="text-center py-4"
-  >Список порожній</div>
+  <LSection
+		:title="title"
+		:subtitle="!data.length ? 'Список порожній' : undefined"
+	>
+		<VTable
+      v-if="data.length"
+      fixed-header
+      rounded
+    >
+      <thead>
+        <tr class="text-sm">
+          <th class="text-left">
+            Категорія
+          </th>
+          <th class="text-left">
+            Дата
+          </th>
+          <th class="text-left">
+            Сума
+          </th>
+          <th />
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          v-for="item in data"
+          :key="item.date"
+          :class="[
+            { 'bg-green-darken-4': item.income },
+            'text-sm'
+          ]"
+        >
+          <td class="flex-shrink-0"><VIcon :icon="item.type.icon" /></td>
+          <td>
+            <div class="inline-flex">
+              <span class="flex-shrink-0">
+                {{ useDateFormat(item.date, 'YYYY-MM-DD') }}
+              </span>
+            </div>
+          </td>
+          <td>
+            <div class="inline-flex">
+              <span class="flex-shrink-0">
+                {{ item.amount }} <small class="opacity-50">UAH</small>
+              </span>
+            </div>
+          </td>
+          <td class="text-right">
+            <VBtn
+              variant="text"
+              @click="wallerStore.removeBalance(item.id)"
+            >
+              <VIcon
+                color="red"
+                :icon="mdiDeleteEmpty"
+              />
+            </VBtn>
+          </td>
+        </tr>
+      </tbody>
+    </VTable>
+	</LSection>
 </template>
 
 <style scoped>

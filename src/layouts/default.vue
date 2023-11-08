@@ -10,10 +10,8 @@ import { LBox, LHeader, LMain } from '../components/Layouts'
       <!-- </LBox> -->
     </header>
 
-    <main class="l-main">
-      <LBox class="h-full flex">
+    <main class="l-main h-full flex">
         <slot />
-      </LBox>
     </main>
 
     <footer class="l-footer">
