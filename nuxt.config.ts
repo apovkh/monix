@@ -31,7 +31,7 @@ export default defineNuxtConfig({
 			name: 'Monix',
 			short_name: 'Monix',
 			theme_color: '#fff',
-			lang: 'en'
+			lang: 'ua'
 		},
 		workbox: {
 			enabled: true
