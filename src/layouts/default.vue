@@ -1,8 +1,11 @@
 <script setup lang="ts">
-import { useTheme } from 'vuetify/lib/framework.mjs'
-
-import { ABlur } from '../components'
-import { LFooter, LHeader, LMain } from '../components/Layouts/'
+import {
+	ABlur,
+	E_ABLUR_BACKGROUND,
+	LFooter,
+	LHeader,
+	LMain
+} from '../components'
 </script>
 
 <template>
@@ -10,7 +13,11 @@ import { LFooter, LHeader, LMain } from '../components/Layouts/'
   <div class="l-wrapper">
     <LHeader />
     <LMain>
-      <ABlur radius-size="xl">
+      <ABlur
+        radius-size="xl"
+        :background="E_ABLUR_BACKGROUND.Dark"
+        class="h-full"
+      >
         <slot />
       </ABlur>
     </LMain>
