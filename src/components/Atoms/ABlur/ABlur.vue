@@ -1,14 +1,17 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 
+import type { IABlurProps } from './'
+import { E_ABLUR_BACKGROUND } from './'
+
 const props = withDefaults(
 	defineProps<{
-		paddingSize?: number
-		radiusSize?: string
+		radiusSize?: IABlurProps['radiusSize']
+		background?: IABlurProps['background']
   }>(),
 	{
-		paddingSize: 3,
-		radiusSize: 'full'
+		radiusSize: 'full',
+		background: E_ABLUR_BACKGROUND.Light
 	}
 )
 </script>
@@ -17,8 +20,8 @@ const props = withDefaults(
 	<div
 		:class="[
 			'a-blur',
-			`p-${paddingSize}`,
-			`rounded-${radiusSize}`
+			`rounded-${radiusSize}`,
+			`a-blut-t-${background}`,
 		]"
 	>
 		<slot />
@@ -30,6 +33,7 @@ const props = withDefaults(
 		@apply
 			relative
 			overflow-hidden
+			p-3
 		;
 
 		backdrop-filter: blur(0px);
@@ -39,9 +43,24 @@ const props = withDefaults(
 			@apply
 				absolute
 				inset-0
-				bg-white
+				inherit
 				opacity-10
 			;
+		}
+
+		&.a-blut-t {
+			&-light::before {
+				@apply
+					bg-white
+				;
+			}
+
+			&-dark::before {
+				@apply
+					bg-dark-800
+					opacity-50
+				;
+			}
 		}
 	}
 </style>
