@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
-
 import type { IABlurProps } from './'
 import { E_ABLUR_BACKGROUND } from './'
 
@@ -36,7 +34,7 @@ const props = withDefaults(
 			p-3
 		;
 
-		backdrop-filter: blur(0px);
+		backdrop-filter: blur(100px);
 
 		&::before {
 		content: '';
@@ -45,6 +43,7 @@ const props = withDefaults(
 				inset-0
 				inherit
 				opacity-10
+				-z-1
 			;
 		}
 
