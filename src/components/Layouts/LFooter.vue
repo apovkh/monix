@@ -17,24 +17,30 @@ import { LBox } from './'
 
 const wallerStore = useWalletStore()
 
-const amount = ref<number>()
 const isError = ref<boolean>(false)
 
-const onChangeBalanceClick = (income: boolean): void => {
-	if (!amount.value || amount.value < 0) {
+const validAmount = () => {
+	if (!wallerStore.amount || wallerStore.amount < 0) {
 		isError.value = true
-		return
+		return false
 	}
 	isError.value = false
-
-	wallerStore.selectBalanceData()
-//
+	return true
 }
 
-const formatBalance = computed<string>(() => wallerStore.totalBalance
-	.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','))
+const onClickIncome = () => {
+	if (validAmount()) {
+		//
+	}
+}
 
-watch(amount, (value) => {
+const onClickAddCost = () => {
+	if (validAmount()) {
+		wallerStore.cost.isOpenDialog = true
+	}
+}
+
+watch(wallerStore.amount, (value) => {
 	if (value && value > 0) {
 		isError.value = false
 	} else {
@@ -56,12 +62,12 @@ onMounted(async () => {
             size="x-large"
             color="green"
             :icon="mdiPlus"
-            @click="onChangeBalanceClick(true)"
+            @click="onClickIncome"
             >
           </VBtn>
 
           <VTextField
-            v-model="amount"
+            v-model="wallerStore.amount"
             label="Сума"
             type="number"
             variant="outlined"
@@ -74,7 +80,7 @@ onMounted(async () => {
             class="px-0"
             color="orange"
             :icon="mdiMinus"
-            @click="onChangeBalanceClick(false)"
+            @click="onClickAddCost"
           />
         </div>
       </ABlur>
