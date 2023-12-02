@@ -1,15 +1,11 @@
 <script setup lang="ts">
-import type { IABlurProps } from './'
-import { E_ABLUR_BACKGROUND } from './'
+import { type IABlurProps } from './'
 
 const props = withDefaults(
-	defineProps<{
-		radiusSize?: IABlurProps['radiusSize']
-		background?: IABlurProps['background']
-  }>(),
+	defineProps<IABlurProps>(),
 	{
 		radiusSize: 'full',
-		background: E_ABLUR_BACKGROUND.Light
+		background: 'light' as IABlurProps['background']
 	}
 )
 </script>
