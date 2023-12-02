@@ -35,7 +35,6 @@ const onClickAddCost = (): void => {
 		]"
 	>
 		<div class="o-dialog-income-inner">
-			{{ walletStore.income.comment }}
 			<VTextarea
 				v-model="walletStore.income.comment"
 				label="Коментар до витрати"
