@@ -11,8 +11,11 @@ import {
 	mdiTrainCar
 } from '@mdi/js'
 
-import type { CATEGORY_TYPES_INCOME, ICategory } from '../types/index'
-import { CATEGORY_TYPES_COSTS } from '../types/index'
+import {
+	CATEGORY_TYPES_COSTS,
+	type CATEGORY_TYPES_INCOME,
+	type ICategory
+} from '../types'
 
 export function useCategory (): any {
 	return computed(() => ({

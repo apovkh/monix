@@ -10,7 +10,7 @@ import {
 } from '@mdi/js'
 
 import { useWalletStore } from '../../../stores/wallet'
-import type { CATEGORY_TYPES_COSTS, ICategory } from '../../types/index'
+import type { CATEGORY_TYPES_COSTS, ICategory } from '../../types'
 
 import type { IABlurProps } from './'
 

@@ -13,7 +13,7 @@ import { useDateFormat } from '@vueuse/core'
 
 import { LSection } from '../../../components'
 import { useWalletStore } from '../../../stores/wallet'
-import type { IBalanceItem } from '../../../types/index'
+import type { IBalanceItem } from '../../../types'
 
 const props = defineProps<{
   data: IBalanceItem[] | []
