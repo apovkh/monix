@@ -14,7 +14,7 @@ import {
 	type IBalanceItem,
 	type ICategory,
 	type INavigationItem
-} from '../types/index'
+} from '../types'
 import Localbase from '../utils/localbase/index'
 
 const db = new Localbase('monix')
@@ -56,9 +56,9 @@ export const useWalletStore = defineStore('wallet', {
 	actions: {
 		addCost () {
 			const cost = {
-				income: false,
+				costs: true,
 				date: useDateFormat(useNow().value, 'YYYY-MM-DD').value,
-				type: this.cost.selectedCategory.type,
+				category: this.cost.selectedCategory.category,
 				icon: this.cost.selectedCategory.icon,
 				amount: `-${this.amount}`,
 				comment: this.cost.comment,
@@ -88,7 +88,7 @@ export const useWalletStore = defineStore('wallet', {
 			const income = {
 				income: true,
 				date: useDateFormat(useNow().value, 'YYYY-MM-DD').value,
-				type: CATEGORY_TYPES_INCOME.Income,
+				category: CATEGORY_TYPES_INCOME.Income,
 				icon: mdiHandCoinOutline,
 				amount: this.amount,
 				comment: this.income.comment,
@@ -118,9 +118,9 @@ export const useWalletStore = defineStore('wallet', {
 		}
 	},
 	getters: {
-		totalBalance (state) {
+		totalBalance (state): number {
 			if (state?.balance?.length) {
-				return state.balance.reduce((acc, item) => {
+				return +state.balance.reduce((acc, item) => {
 					return acc + Number(item.amount)
 				}, 0).toFixed(2)
 			}

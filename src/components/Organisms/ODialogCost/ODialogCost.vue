@@ -64,7 +64,7 @@ const onSelectCategory = (category: ICategory): void => {
 				class="o-dialog-cost-button"
 				color="orange"
 				size="large"
-				:disabled="!walletStore.cost.selectedCategory.type"
+				:disabled="!walletStore.cost.selectedCategory.category"
 				@click="onClickAddCost"
 			>
 				<span class="text-sm">

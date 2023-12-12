@@ -40,7 +40,7 @@ const onAddCategory = () => {
 }
 
 const categoryColor = (item) => {
-	return item.type === walletStore.cost.selectedCategory.type
+	return item.category === walletStore.cost.selectedCategory.category
 		? item.color
 		: ''
 }

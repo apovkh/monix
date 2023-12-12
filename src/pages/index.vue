@@ -9,10 +9,11 @@ import {
 } from 'vuetify/components'
 
 import { ATable, ODialogCost, ODialogIncome } from '../components'
+import { useFiltersStore } from '../stores/filters'
 import { useWalletStore } from '../stores/wallet'
 
 const walletStore = useWalletStore()
-const navigation = ref(null)
+const filtersStore = useFiltersStore()
 
 onMounted(async () => {
 	await walletStore.getBalance()
@@ -22,7 +23,7 @@ onMounted(async () => {
 <template>
   <div class="p-main">
     <ATable
-      :data="walletStore.balance"
+      :data="filtersStore.filteredBalance"
       title="Список витрат/прибутків"
     />
     <!-- <div class="flex-grow-1 relative"> -->
