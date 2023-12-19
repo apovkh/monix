@@ -9,7 +9,7 @@
     "bundle": "npm run bundle-dev && npm run bundle-prod",
     "deploy": "npm run bundle && npm publish"
   },
-  "author": "Danny Connell",
+  "author": "Anatolii Povkh",
   "license": "MIT",
   "dependencies": {
     "localforage": "^1.7.4",
@@ -23,10 +23,6 @@
     "envify": "^4.1.0",
     "tinyify": "^3.0.0"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/dannyconnell/localbase.git"
-  },
   "keywords": [
     "database",
     "offline",
@@ -35,8 +31,4 @@
     "indexeddb",
     "javascript"
   ],
-  "bugs": {
-    "url": "https://github.com/dannyconnell/localbase/issues"
-  },
-  "homepage": "https://github.com/dannyconnell/localbase#readme"
 }

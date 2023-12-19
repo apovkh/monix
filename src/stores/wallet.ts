@@ -2,18 +2,14 @@ import { defineStore } from 'pinia'
 import { v4 as uuidv4 } from 'uuid'
 
 import {
-	mdiChartArc,
-	mdiFormatListBulleted,
 	mdiHandCoinOutline
 } from '@mdi/js'
 import { useDateFormat, useNow } from '@vueuse/core'
 
-import { AChart, MBalanceTable, MIncomeTable } from '../components'
 import {
 	CATEGORY_TYPES_INCOME,
 	type IBalanceItem,
-	type ICategory,
-	type INavigationItem
+	type ICategory
 } from '../types'
 import Localbase from '../utils/localbase/index'
 
@@ -23,42 +19,26 @@ export const useWalletStore = defineStore('wallet', {
 	state: () => ({
 		balance: [] as IBalanceItem[],
 		amount: null as number | null,
+		date: useDateFormat(useNow().value, 'YYYY-MM-DD').value,
 		cost: {
 			isOpenDialog: false as boolean,
 			selectedCategory: {} as ICategory,
-			comment: '' as IBalanceItem['comment']
+			comment: '' as IBalanceItem['comment'],
+			label: '' as IBalanceItem['label']
 		},
 		income: {
 			isOpenDialog: false as boolean,
-			comment: '' as IBalanceItem['comment']
-		},
-		navigations: [
-			{
-				icon: mdiFormatListBulleted,
-				active: true,
-				value: 1,
-				component: MBalanceTable
-			},
-			{
-				icon: mdiHandCoinOutline,
-				active: false,
-				value: 2,
-				component: MIncomeTable
-			},
-			{
-				icon: mdiChartArc,
-				active: false,
-				value: 3,
-				component: AChart
-			}
-		] as INavigationItem[]
+			comment: '' as IBalanceItem['comment'],
+			label: '' as IBalanceItem['label']
+		}
 	}),
 	actions: {
 		addCost () {
 			const cost = {
 				costs: true,
-				date: useDateFormat(useNow().value, 'YYYY-MM-DD').value,
+				date: this.date,
 				category: this.cost.selectedCategory.category,
+				label: this.cost.selectedCategory.label,
 				icon: this.cost.selectedCategory.icon,
 				amount: `-${this.amount}`,
 				comment: this.cost.comment,
@@ -87,8 +67,9 @@ export const useWalletStore = defineStore('wallet', {
 		addIcome () {
 			const income = {
 				income: true,
-				date: useDateFormat(useNow().value, 'YYYY-MM-DD').value,
+				date: this.date,
 				category: CATEGORY_TYPES_INCOME.Income,
+				label: 'Надходження',
 				icon: mdiHandCoinOutline,
 				amount: this.amount,
 				comment: this.income.comment,

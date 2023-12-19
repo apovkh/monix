@@ -37,7 +37,7 @@ const onClickAddCost = (): void => {
 		<div class="o-dialog-income-inner">
 			<VTextarea
 				v-model="walletStore.income.comment"
-				label="Коментар до витрати"
+				label="Коментар до надходження"
 				auto-grow
 				variant="outlined"
 				class="o-dialog-income-comment"
@@ -90,7 +90,7 @@ const onClickAddCost = (): void => {
 		&-inner {
 			@apply
 				bg-black
-				p-4
+				p-8
 				rounded-3xl
 				font-semibold
 

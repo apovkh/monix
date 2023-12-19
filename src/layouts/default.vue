@@ -7,7 +7,8 @@ import {
 	LFooter,
 	LHeader,
 	LMain,
-	ODrawerFilter
+	ODrawerFilter,
+	ODrawerMenu
 } from '../components'
 const isOpenMenuDrawer = ref(false)
 const isOpenFiltersDrawer = ref(false)
@@ -41,12 +42,7 @@ const onFilterMenuClick = (): void => {
     <LFooter />
   </div>
 
-  <ADrawer
-    v-model="isOpenMenuDrawer"
-  >
-    menu
-  </ADrawer>
-
+  <ODrawerMenu v-model="isOpenMenuDrawer" />
   <ODrawerFilter v-model="isOpenFiltersDrawer" />
 </template>
 
