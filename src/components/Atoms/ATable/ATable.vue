@@ -49,7 +49,7 @@ const onClickRemoveBalance = (id: number | number): void => {
         >
           <td>
             <VIcon :icon="item.icon" /> <br>
-            <span class="flex-shrink-0 mt-2 d-inline-block text-xs">
+            <span class="flex-shrink-0 mt-2 d-inline-block text-xs opacity-50">
                 {{ item.date }}
               </span>
           </td>
@@ -90,6 +90,6 @@ const onClickRemoveBalance = (id: number | number): void => {
 	</LSection>
 </template>
 
-<style scoped>
-
+<style lang="scss">
+//
 </style>

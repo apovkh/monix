@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { VDialog, VTextarea } from 'vuetify/components'
+import { VTextarea } from 'vuetify/components'
 
 import { useVModel } from '@vueuse/core'
 
 import { useWalletStore } from '../../../stores/wallet'
-
+import { ADialog } from '../../'
 const props = withDefaults(
 	defineProps<{
 		modelValue: boolean
@@ -26,7 +26,7 @@ const onClickAddCost = (): void => {
 </script>
 
 <template>
-	<VDialog
+	<ADialog
 		v-model="proxiedModelValue"
 		transition="dialog-bottom-transition"
 		width="500"
@@ -56,7 +56,7 @@ const onClickAddCost = (): void => {
 				</span>
 			</VBtn>
 		</div>
-	</VDialog>
+	</ADialog>
 </template>
 
 <style scoped>

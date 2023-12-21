@@ -70,7 +70,7 @@ const categoryColor = (item): string => {
 
 		&-item {
 			@apply
-				min-w-24
+				min-w-20
 				max-w-36
 
 				flex
@@ -83,6 +83,8 @@ const categoryColor = (item): string => {
 				break-normal
 				p-2
 				leading-4
+
+				lg:min-w-26
 			;
 			aspect-ratio: 1;
 		}

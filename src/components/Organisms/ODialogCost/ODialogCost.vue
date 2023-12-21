@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import { VDialog, VTextarea } from 'vuetify/components'
+import { VTextarea } from 'vuetify/components'
 
 import { useVModel } from '@vueuse/core'
 
 import { useCategory } from '../../../composables/useCategory'
 import { useWalletStore } from '../../../stores/wallet'
 import type { ICategory } from '../../../types'
-import { MCategories } from '../../'
+import { ADialog, MCategories } from '../../'
 
 const props = withDefaults(
 	defineProps<{
@@ -34,7 +34,7 @@ const onSelectCategory = (category: ICategory): void => {
 </script>
 
 <template>
-	<VDialog
+	<ADialog
 		v-model="proxiedModelValue"
 		transition="dialog-bottom-transition"
 		width="auto"
@@ -72,7 +72,7 @@ const onSelectCategory = (category: ICategory): void => {
 				</span>
 			</VBtn>
 		</div>
-	</VDialog>
+	</ADialog>
 </template>
 
 <style scoped>
@@ -109,7 +109,6 @@ const onSelectCategory = (category: ICategory): void => {
 				p-6
 				rounded-3xl
 				font-semibold
-				w-[100vw]
 				max-w-[600px]
 				іь:p-8
 				md:p-10
