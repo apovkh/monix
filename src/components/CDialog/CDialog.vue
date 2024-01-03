@@ -7,28 +7,15 @@ import {
 	VCard,
 	VDatePicker,
 	VDialog,
-	VIcon,
-	VRow,
-	VTextField,
-	VWindow,
-	VWindowItem
+	VTextField
 } from 'vuetify/components'
 
 import {
-	mdiChartArc,
-	mdiDumbbell,
-	mdiFood,
-	mdiGift,
-	mdiHandCoinOutline,
-	mdiHomeCity,
-	mdiMinus,
-	mdiPillMultiple,
-	mdiPlus,
-	mdiSilverwareForkKnife,
-	mdiTrainCar
+	mdiHandCoinOutline
 } from '@mdi/js'
 import { useDateFormat, useVModel } from '@vueuse/core'
 
+import { useCategory } from '../../composables/useCategory'
 import { useWalletStore } from '../../stores/wallet'
 import {
 	CATEGORY_TYPES_COSTS,
@@ -50,6 +37,7 @@ defineEmits<{
 
 const proxiedModelValue = useVModel(props, 'modelValue')
 const wallerStore = useWalletStore()
+const categoryComposable = useCategory()
 const categoryTypes = reactive(Object.values(CATEGORY_TYPES_COSTS))
 const selectedCategory = ref(
 	props.increase
@@ -71,6 +59,12 @@ const actionButtonText = computed((): string => {
 		: 'Add costs'
 })
 
+const titleText = computed((): string => {
+	return props.increase
+		? 'Balance'
+		: 'Costs'
+})
+
 const onChangeBalance = (): void => {
 	if (!amount.value || amount.value < 0) {
 		isError.value = true
@@ -83,34 +77,15 @@ const onChangeBalance = (): void => {
 		amount: props.increase ? amount.value : `-${amount.value}`,
 		date: dateFormat.value,
 		type: {
-			icon: props.increase ? mdiHandCoinOutline : getIcon(selectedCategory.value),
+			icon: props.increase
+				? mdiHandCoinOutline
+				: categoryComposable.value[selectedCategory.value].icon,
 			name: selectedCategory.value.toString()
 		},
 		id: uuidv4()
 	})
 
 	proxiedModelValue.value = false
-}
-
-const getIcon = (type: CATEGORY_TYPES_COSTS): string => {
-	switch (type) {
-	case CATEGORY_TYPES_COSTS.Food:
-		return mdiFood
-	case CATEGORY_TYPES_COSTS.Flat:
-		return mdiHomeCity
-	case CATEGORY_TYPES_COSTS.Medicine:
-		return mdiPillMultiple
-	case CATEGORY_TYPES_COSTS.Gift:
-		return mdiGift
-	case CATEGORY_TYPES_COSTS.Restaurants:
-		return mdiSilverwareForkKnife
-	case CATEGORY_TYPES_COSTS.Sport:
-		return mdiDumbbell
-	case CATEGORY_TYPES_COSTS.Transport:
-		return mdiTrainCar
-
-	default: return mdiFood
-	}
 }
 
 const onCancel = (): void => {
@@ -127,12 +102,12 @@ watch(amount, (value) => {
 </script>
 
 <template>
- <VDialog
-    v-model="proxiedModelValue"
-    width="800"
+	<VDialog
+		v-model="proxiedModelValue"
+		width="800"
   >
     <VCard
-      title="Add balance"
+      :title="titleText"
     >
       <div class="p-4">
         <VTextField
