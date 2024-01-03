@@ -4,8 +4,8 @@ export default defineNuxtConfig({
 	modules: [
 		'nuxt-windicss',
 		'nuxt-vitest',
-		'@kevinmarrec/nuxt-pwa',
-		'@pinia/nuxt'
+		'@kevinmarrec/nuxt-pwa'
+		// '@vite-pwa/nuxt'
 	],
 	css: [
 		'vuetify/lib/styles/main.sass',
@@ -24,12 +24,10 @@ export default defineNuxtConfig({
 	},
 	pwa: {
 		manifest: {
-			name: 'Monix',
+			name: 'Monix Application',
 			short_name: 'Monix',
-			theme_color: '#161719'
-		},
-		workbox: {
-			enabled: true
+			theme_color: '#500',
+			lang: 'en'
 		}
 	}
 })

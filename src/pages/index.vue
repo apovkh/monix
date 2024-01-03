@@ -99,20 +99,8 @@ const chartData = computed(() => {
 </script>
 
 <template>
-  <div class="p-main">
-    <ATable
-      v-if="menuStore.view === DATA_SCREEN_VIEW.Table"
-      :data="filtersStore.filteredBalance"
-      :title="tableTitle"
-			@remove-item="onRemoveBalanceItem"
-    />
-
-    <AChart
-			v-if="menuStore.view === DATA_SCREEN_VIEW.Chart"
-			:title="chartTitle"
-			:categories="existCatgories"
-			:chart-data="chartData"
-		/>
+  <div class="c-home">
+    Home screen
   </div>
 
   <ODialogCost v-model="walletStore.cost.isOpenDialog" />
