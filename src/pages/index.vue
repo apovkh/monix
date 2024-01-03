@@ -99,8 +99,13 @@ const chartData = computed(() => {
 </script>
 
 <template>
-  <div class="c-home">
-    Home screen
+  <div class="p-main">
+    <LHeader />
+    <LMain>
+      <LBox>
+        <CButton text="m button text" />
+      </LBox>
+    </LMain>
   </div>
 
   <ODialogCost v-model="walletStore.cost.isOpenDialog" />
