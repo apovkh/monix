@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { computed, onMounted } from 'vue'
-import { VBtn, VIcon } from 'vuetify/components'
+import { VBtn } from 'vuetify/components'
 
-import { mdiCogOutline, mdiFilterOutline, mdiMenu } from '@mdi/js'
+import { mdiFilterOutline, mdiMenu } from '@mdi/js'
 
 import { useWalletStore } from '../../stores/wallet'
 import { ABlur } from '../'
@@ -10,8 +10,8 @@ import { ABlur } from '../'
 import LBox from './LBox.vue'
 
 const emit = defineEmits<{
-  (e: 'menu:click', value: any): void
-  (e: 'filter:click', value: any): void
+  (e: 'menu:click', value: MouseEvent): void
+  (e: 'filter:click', value: MouseEvent): void
 }>()
 
 const wallerStore = useWalletStore()
@@ -19,12 +19,12 @@ const wallerStore = useWalletStore()
 const formatBalance = computed<string>(() => wallerStore.totalBalance
 	.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','))
 
-const onMenuCLick = () => {
-	emit('menu:click')
+const onMenuCLick = (e) => {
+	emit('menu:click', e)
 }
 
-const onFilterCLick = () => {
-	emit('filter:click')
+const onFilterCLick = (e) => {
+	emit('filter:click', e)
 }
 
 onMounted(async () => {
