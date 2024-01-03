@@ -1,21 +1,66 @@
 <script setup lang="ts">
+import { useTheme } from 'vuetify/lib/framework.mjs'
+
+import { ABlur } from '../components'
+import { LFooter, LHeader, LMain } from '../components/Layouts/'
 </script>
 
 <template>
+  <div class="t-overlay" />
   <div class="l-wrapper">
-    <header class="l-header">
-    </header>
-
-    <main class="l-main h-full flex">
+    <LHeader />
+    <LMain>
+      <ABlur radius-size="xl">
         <slot />
-    </main>
+      </ABlur>
+    </LMain>
 
-    <footer class="l-footer">
-    </footer>
+    <LFooter />
   </div>
 </template>
 
 <style lang="scss">
+  .t-overlay {
+    @apply
+      absolute
+      inset-0
+      overflow-hidden
+      pointer-events-none
+      -z-1
+    ;
+
+    &::before,
+    &::after {
+      content: '';
+      @apply
+        absolute
+        w-[60vw]
+        h-[80vw]
+        max-h-[50vh]
+        max-w-[50vh]
+        -z-1
+        pointer-events-none
+
+      ;
+      filter: blur(130px);
+    }
+
+    &::before {
+      background-color: #E7B262;
+      @apply
+        top-0
+        -left-5
+      ;
+    }
+
+    &::after {
+      background-color: #88B4B3;
+      @apply
+        -bottom-2
+        -right-5
+      ;
+    }
+  }
   .l-wrapper {
     @apply
       grid

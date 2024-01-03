@@ -12,8 +12,6 @@ import LBox from './LBox.vue'
 
 <style scoped>
   .l-main {
-    @apply
-      my-4
-    ;
+    //
   }
 </style>
