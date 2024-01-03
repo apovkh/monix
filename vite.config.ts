@@ -1,7 +1,6 @@
 /// <reference types="vitest" />
 
 import { defineConfig } from 'vite'
-import { VitePWA } from 'vite-plugin-pwa'
 import vuetify from 'vite-plugin-vuetify'
 import WindiCSS from 'vite-plugin-windicss'
 
@@ -19,33 +18,5 @@ export default defineConfig({
 		vue(),
 		vuetify(),
 		WindiCSS()
-		// VitePWA({
-		// 	srcDir: 'src',
-		// 	registerType: 'autoUpdate',
-		// 	injectRegister: 'auto',
-		// 	workbox: {
-		// 		clientsClaim: true,
-		// 		skipWaiting: true,
-		// 		navigateFallback: '/',
-		// 		globPatterns: ['*/*.*', '*.*']
-		// 	},
-		// 	devOptions: {
-		// 		enabled: true
-		// 	}
-		// 	// manifest: {
-		// 	// 	name: 'Monix',
-		// 	// 	short_name: 'Monix App',
-		// 	// 	theme_color: '#500',
-		// 	// 	lang: 'en',
-		// 	// 	icons: [
-		// 	// 		{
-		// 	// 			src: '/icon.png',
-		// 	// 			size: '512x512',
-		// 	// 			type: 'image/png',
-		// 	// 			purpose: 'any maskable'
-		// 	// 		}
-		// 	// 	]
-		// 	// }
-		// })
 	]
 })

@@ -15,6 +15,7 @@ const db = new Localbase('monix')
 export const useWalletStore = defineStore('wallet', {
 	state: () => ({
 		balance: [] as IBalanceItem[],
+		isOpenDialog: false as boolean,
 		navigations: [
 			{
 				icon: mdiFormatListBulleted,
@@ -40,6 +41,9 @@ export const useWalletStore = defineStore('wallet', {
 		changeBalance (balanceItem: IBalanceItem) {
 			db.collection('balance').add(balanceItem)
 			this.balance.unshift(balanceItem)
+		},
+		selectBalanceData () {
+			this.isOpenDialog = true
 		},
 		removeBalance (id: IBalanceItem['id']) {
 			db.collection('balance').doc({ id }).delete()
