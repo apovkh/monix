@@ -14,9 +14,9 @@ const emit = defineEmits<{
   (e: 'filter:click', value: MouseEvent): void
 }>()
 
-const wallerStore = useWalletStore()
+const walletStore = useWalletStore()
 
-const formatBalance = computed<string>(() => wallerStore.totalBalance
+const formatBalance = computed<string>(() => walletStore.totalBalance
 	.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','))
 
 const onMenuCLick = (e) => {
@@ -28,7 +28,7 @@ const onFilterCLick = (e) => {
 }
 
 onMounted(async () => {
-	await wallerStore.getBalance()
+	await walletStore.getBalance()
 })
 </script>
 

@@ -20,7 +20,7 @@ const props = defineProps<{
   title?: string
 }>()
 
-const wallerStore = useWalletStore()
+const walletStore = useWalletStore()
 </script>
 
 <template>
@@ -90,7 +90,7 @@ const wallerStore = useWalletStore()
           <td class="text-right">
             <VBtn
               variant="text"
-              @click="wallerStore.removeBalance(item.id)"
+              @click="walletStore.removeBalance(item.id)"
             >
               <VIcon
                 color="red"
