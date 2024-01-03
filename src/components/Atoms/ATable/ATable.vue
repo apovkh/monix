@@ -9,18 +9,23 @@ import {
 	mdiCommentProcessingOutline,
 	mdiDeleteEmpty
 } from '@mdi/js'
-import { useDateFormat } from '@vueuse/core'
 
 import { LSection } from '../../../components'
-import { useWalletStore } from '../../../stores/wallet'
-import type { IBalanceItem } from '../../../types'
+
+import type { IATablePropsTypes } from './'
 
 const props = defineProps<{
-  data: IBalanceItem[] | []
-  title?: string
+  data: IATablePropsTypes['data']
+  title: IATablePropsTypes['title']
 }>()
 
-const walletStore = useWalletStore()
+const emit = defineEmits<{
+  (e: 'remove-item', value: number): void
+}>()
+
+const onClickRemoveBalance = (id: number | number): void => {
+	emit('remove-item', id)
+}
 </script>
 
 <template>
@@ -33,23 +38,6 @@ const walletStore = useWalletStore()
       fixed-header
       rounded
     >
-      <thead>
-        <tr class="text-sm">
-          <th class="text-left">
-            Категорія
-          </th>
-          <th class="text-left">
-            Дата
-          </th>
-          <th class="text-left">
-            Сума
-          </th>
-          <th class="text-left">
-
-          </th>
-          <th />
-        </tr>
-      </thead>
       <tbody>
         <tr
           v-for="item in data"
@@ -59,13 +47,11 @@ const walletStore = useWalletStore()
             'text-sm'
           ]"
         >
-          <td class="flex-shrink-0"><VIcon :icon="item.icon" /></td>
           <td>
-            <div class="inline-flex">
-              <span class="flex-shrink-0">
+            <VIcon :icon="item.icon" /> <br>
+            <span class="flex-shrink-0 mt-2 d-inline-block text-xs">
                 {{ item.date }}
               </span>
-            </div>
           </td>
           <td>
             <div class="inline-flex">
@@ -90,7 +76,7 @@ const walletStore = useWalletStore()
           <td class="text-right">
             <VBtn
               variant="text"
-              @click="walletStore.removeBalance(item.id)"
+              @click="onClickRemoveBalance(item.id)"
             >
               <VIcon
                 color="red"
