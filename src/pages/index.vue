@@ -35,7 +35,7 @@ const onChangeBalanceClick = (increase: boolean): void => {
     <div class="main">
       <div class="bg-indigo p-4">
 
-        <h2 class="text-center mb-4">Balance</h2>
+        <h2 class="text-4xl text-center mb-4 title-1">Balance</h2>
         <div class="flex gap-2 items-center justify-between">
           <VBtn
             rounded="xl"
@@ -50,7 +50,7 @@ const onChangeBalanceClick = (increase: boolean): void => {
           </VBtn>
 
           <div>
-            <b class="text-xl mr-2">{{ wallerStore.totalBalance }}</b>
+            <b class="text-3xl mr-2">{{ wallerStore.totalBalance }}</b>
             <small class="opacity-50">UAH</small>
           </div>
 
@@ -73,17 +73,17 @@ const onChangeBalanceClick = (increase: boolean): void => {
 
     <div class="flex-grow-1 overflow-auto">
       <VWindow v-model="navigation">
-      <VWindowItem
-        v-for="nav in wallerStore.navigations"
-        :key="nav.value"
-        :value="nav.value"
-      >
-        <Component :is="nav.component" />
-      </VWindowItem>
-    </VWindow>
+        <VWindowItem
+          v-for="nav in wallerStore.navigations"
+          :key="nav.value"
+          :value="nav.value"
+        >
+          <Component :is="nav.component" />
+        </VWindowItem>
+      </VWindow>
     </div>
 
-    <div class="tabs">
+    <div class="tabs shadow shadow-sm shadow-light-500">
       <VTabs
         v-model="navigation"
         grow
