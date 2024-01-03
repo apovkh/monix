@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { type IABlurProps } from './'
+import type { type IABlurProps, IABlurProps } from './'
+import { E_ABLUR_BACKGROUND } from './'
 
 const props = withDefaults(
 	defineProps<IABlurProps>(),
