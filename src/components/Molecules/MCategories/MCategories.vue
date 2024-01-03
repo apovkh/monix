@@ -1,23 +1,14 @@
 <script setup lang="ts">
-import { watch } from 'vue'
 import {
-	VCard,
-	VIcon
+	VCard
 } from 'vuetify/components'
-
-import {
-	mdiPlus
-} from '@mdi/js'
 
 import { useWalletStore } from '../../../stores/wallet'
 import type { CATEGORY_TYPES_COSTS, ICategory } from '../../types'
 
-import type { IABlurProps } from './'
-
 const props = withDefaults(
 	defineProps<{
 		data: ICategory[]
-		// radiusSize?: IABlurProps['radiusSize']
   }>(),
 	{
 		//
@@ -35,11 +26,7 @@ const onCategorySelect = (category: ICategory): void => {
 	emit('category', category)
 }
 
-const onAddCategory = () => {
-	//
-}
-
-const categoryColor = (item) => {
+const categoryColor = (item): string => {
 	return item.category === walletStore.cost.selectedCategory.category
 		? item.color
 		: ''
@@ -53,9 +40,12 @@ const categoryColor = (item) => {
 			'm-categories',
 		]"
 	>
-		<VCard
+		<template
 			v-for="item in data"
 			:key="item.type"
+		>
+		<VCard
+			v-if="item.category"
 			:color="categoryColor(item)"
 			class="m-categories-item"
 			dark
@@ -64,17 +54,7 @@ const categoryColor = (item) => {
 		>
 			{{ item.label }}
 		</VCard>
-		<!-- <VCard -->
-			<!-- class="m-categories-item" -->
-			<!-- dark -->
-			<!-- ripple -->
-			<!-- @click="onAddCategory()" -->
-		<!-- > -->
-			<!-- <VIcon -->
-				<!-- :icon="mdiPlus" -->
-				<!-- size="x-large" -->
-			<!-- /> -->
-		<!-- </VCard> -->
+	</template>
 	</div>
 </template>
 
@@ -82,11 +62,10 @@ const categoryColor = (item) => {
 	.m-categories {
 		@apply
 			grid
-			grid-cols-2
+			grid-cols-3
 			gap-2
 
-			md:grid-cols-3
-			lg:grid-cols-4
+			sm:grid-cols-4
 		;
 
 		&-item {

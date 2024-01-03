@@ -48,6 +48,15 @@ export const useFiltersStore = defineStore('filters', {
 		//
 	},
 	getters: {
+		balance (): number | string {
+			if (this.filteredBalance.length) {
+				const balance = +this.filteredBalance.reduce((acc, item) => {
+					return acc + Number(item.amount)
+				}, 0).toFixed(2)
+				return balance.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+			}
+			return 0
+		},
 		filteredBalance (state): IBalanceItem[] {
 			const result = ref<IBalanceItem[]>([])
 			const balance = state.walletStore.balance

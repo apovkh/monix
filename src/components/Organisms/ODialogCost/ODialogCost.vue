@@ -106,11 +106,14 @@ const onSelectCategory = (category: ICategory): void => {
 		&-inner {
 			@apply
 				bg-black
-				p-4
+				p-6
 				rounded-3xl
 				font-semibold
-
+				w-[100vw]
+				max-w-[600px]
+				іь:p-8
 				md:p-10
+				<sm:max-w-[90vw]
 			;
 		}
 	}

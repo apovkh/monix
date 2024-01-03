@@ -13,8 +13,7 @@ import {
 
 import {
 	CATEGORY_TYPES_COSTS,
-	type CATEGORY_TYPES_INCOME,
-	type ICategory
+	CATEGORY_TYPES_INCOME
 } from '../types'
 
 export function useCategory (): any {
@@ -60,12 +59,12 @@ export function useCategory (): any {
 			icon: mdiSilverwareForkKnife,
 			label: 'Ресторани',
 			category: CATEGORY_TYPES_COSTS.Restaurants
+		},
+		[CATEGORY_TYPES_INCOME.Income]: {
+			color: '#00ff00',
+			icon: mdiHandCoinOutline,
+			label: 'Надходження',
+			value: CATEGORY_TYPES_INCOME.Income
 		}
-		// [CATEGORY_TYPES_INCOME.Income]: {
-		// 	color: '#00ff00',
-		// 	icon: mdiHandCoinOutline,
-		// 	label: 'Надходження',
-		// 	value: CATEGORY_TYPES_INCOME.Income
-		// }
 	}))
 }

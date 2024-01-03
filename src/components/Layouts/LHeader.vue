@@ -19,11 +19,11 @@ const walletStore = useWalletStore()
 const formatBalance = computed<string>(() => walletStore.totalBalance
 	.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','))
 
-const onMenuCLick = (e) => {
+const onMenuCLick = (e): void => {
 	emit('menu:click', e)
 }
 
-const onFilterCLick = (e) => {
+const onFilterCLick = (e): void => {
 	emit('filter:click', e)
 }
 
@@ -44,7 +44,7 @@ onMounted(async () => {
           />
 
           <div class="mr-auto text-2xl text-center">
-            <div class="text-xs">Balance</div>
+            <div class="text-xs">Загальний баланс</div>
             <div class="text-2xl transform font-bold">
               {{ formatBalance }}
             </div>

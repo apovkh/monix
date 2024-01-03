@@ -29,4 +29,5 @@ export interface IBalanceItem {
 	amount: number | string
   id: string | number
   comment?: any
+  label: string
 }
