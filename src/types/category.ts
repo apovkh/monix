@@ -5,7 +5,8 @@ export enum CATEGORY_TYPES_COSTS {
   Sport = 'Sport',
   Medicine = 'Medicine',
   Gift = 'Gift',
-  Restaurants = 'Restaurants'
+  Restaurants = 'Restaurants',
+  Value = 'Costs'
 }
 
 export enum CATEGORY_TYPES_INCOME {
@@ -16,13 +17,14 @@ export interface ICategory {
   color: string
   icon: string
   label: string
-	type: CATEGORY_TYPES_COSTS | CATEGORY_TYPES_INCOME | null
+	category: CATEGORY_TYPES_COSTS | CATEGORY_TYPES_INCOME | null
 }
 
 export interface IBalanceItem {
-  income: boolean
+  income?: boolean
+  costs?: boolean
 	date: any
-  type: CATEGORY_TYPES_COSTS | CATEGORY_TYPES_INCOME
+  category: CATEGORY_TYPES_COSTS | CATEGORY_TYPES_INCOME
   icon?: string
 	amount: number | string
   id: string | number

@@ -7,7 +7,7 @@ import { ATable } from '../../'
 
 const walletStore = useWalletStore()
 const incomeData = computed(() => walletStore.balance
-	.filter(item => item.type.name === CATEGORY_TYPES_INCOME.Income))
+	.filter(item => item.category.name === CATEGORY_TYPES_INCOME.Income))
 </script>
 
 <template>
