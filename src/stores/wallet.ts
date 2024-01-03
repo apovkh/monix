@@ -83,6 +83,9 @@ export const useWalletStore = defineStore('wallet', {
 			db.collection('balance').add(income)
 			this.resetIncomeData()
 		},
+		selectBalanceData () {
+			this.isOpenDialog = true
+		},
 		removeBalance (id: IBalanceItem['id']) {
 			db.collection('balance').doc({ id }).delete()
 
