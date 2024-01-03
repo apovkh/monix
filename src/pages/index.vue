@@ -101,7 +101,7 @@ const chartData = computed(() => {
 <template>
   <div class="p-main">
     <ATable
-      :data="walletStore.balance"
+      :data="filtersStore.filteredBalance"
       title="Список витрат/прибутків"
     />
     <!-- <div class="flex-grow-1 relative"> -->
