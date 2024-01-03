@@ -1,6 +1,6 @@
 export enum CATEGORY_TYPES_COSTS {
   Food = 'Food',
-  Flat = 'Flat',
+  Apartment = 'apartment',
   Transport = 'Transport',
   Sport = 'Sport',
   Medicine = 'Medicine',
