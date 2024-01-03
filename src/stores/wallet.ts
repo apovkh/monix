@@ -1,13 +1,15 @@
 import { defineStore } from 'pinia'
+import { v4 as uuidv4 } from 'uuid'
 
 import {
 	mdiChartArc,
 	mdiFormatListBulleted,
 	mdiHandCoinOutline
 } from '@mdi/js'
+import { useDateFormat, useNow } from '@vueuse/core'
 
 import { AChart, MBalanceTable, MIncomeTable } from '../components'
-import type { IBalanceItem, INavigationItem } from '../types/index'
+import type { IBalanceItem, ICategory, INavigationItem } from '../types/index'
 import Localbase from '../utils/localbase/index'
 
 const db = new Localbase('monix')
@@ -15,7 +17,12 @@ const db = new Localbase('monix')
 export const useWalletStore = defineStore('wallet', {
 	state: () => ({
 		balance: [] as IBalanceItem[],
-		isOpenDialog: false as boolean,
+		amount: 0 as number,
+		cost: {
+			isOpenDialog: false as boolean,
+			selectedCategory: {} as ICategory,
+			comment: '' as IBalanceItem['comment']
+		},
 		navigations: [
 			{
 				icon: mdiFormatListBulleted,
@@ -38,12 +45,29 @@ export const useWalletStore = defineStore('wallet', {
 		] as INavigationItem[]
 	}),
 	actions: {
-		changeBalance (balanceItem: IBalanceItem) {
-			db.collection('balance').add(balanceItem)
-			this.balance.unshift(balanceItem)
+		addCost () {
+			const cost = {
+				income: false,
+				date: useDateFormat(useNow().value, 'YYYY-MM-DD').value,
+				type: this.cost.selectedCategory.type,
+				icon: this.cost.selectedCategory.icon,
+				amount: `-${this.amount}`,
+				comment: this.cost.comment,
+				id: uuidv4()
+			} as IBalanceItem
+
+			this.balance.unshift(cost)
+
+			db.collection('balance').add(cost)
+			this.resetCostData()
 		},
-		selectBalanceData () {
-			this.isOpenDialog = true
+		setSelectedCategory (data: ICategory) {
+			this.$state.cost.selectedCategory = data
+		},
+		resetCostData () {
+			this.cost.isOpenDialog = false
+			this.cost.selectedCategory = {} as ICategory
+			this.cost.comment = ''
 		},
 		removeBalance (id: IBalanceItem['id']) {
 			db.collection('balance').doc({ id }).delete()

@@ -24,12 +24,11 @@ export enum DATE_TYPES {
 export interface IBalanceItem {
   income: boolean
 	date: any
-	type: {
-		name: CATEGORY_TYPES_COSTS | CATEGORY_TYPES_INCOME
-		icon?: string
-	}
+  type: CATEGORY_TYPES_COSTS | CATEGORY_TYPES_INCOME
+  icon?: string
 	amount: number | string
-	id: string | number
+  id: string | number
+  comment?: any
 }
 
 export interface INavigationItem {
@@ -37,4 +36,11 @@ export interface INavigationItem {
   active: boolean
   value: number | string
   component: any
+}
+
+export interface ICategory {
+  color: string
+  icon: string
+  label: string
+	type: CATEGORY_TYPES_COSTS | CATEGORY_TYPES_INCOME | null
 }

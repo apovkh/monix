@@ -6,6 +6,7 @@ import {
 } from 'vuetify/components'
 
 import {
+	mdiCommentProcessingOutline,
 	mdiDeleteEmpty
 } from '@mdi/js'
 import { useDateFormat } from '@vueuse/core'
@@ -43,6 +44,9 @@ const wallerStore = useWalletStore()
           <th class="text-left">
             Сума
           </th>
+          <th class="text-left">
+
+          </th>
           <th />
         </tr>
       </thead>
@@ -55,11 +59,11 @@ const wallerStore = useWalletStore()
             'text-sm'
           ]"
         >
-          <td class="flex-shrink-0"><VIcon :icon="item.type.icon" /></td>
+          <td class="flex-shrink-0"><VIcon :icon="item.icon" /></td>
           <td>
             <div class="inline-flex">
               <span class="flex-shrink-0">
-                {{ useDateFormat(item.date, 'YYYY-MM-DD') }}
+                {{ item.date }}
               </span>
             </div>
           </td>
@@ -69,6 +73,19 @@ const wallerStore = useWalletStore()
                 {{ item.amount }} <small class="opacity-50">UAH</small>
               </span>
             </div>
+          </td>
+          <td>
+            <VTooltip
+              v-if="item.comment"
+              :text="item.comment"
+            >
+              <template v-slot:activator="{ props }">
+                <VIcon
+                  v-bind="props"
+                  :icon="mdiCommentProcessingOutline"
+                />
+              </template>
+            </VTooltip>
           </td>
           <td class="text-right">
             <VBtn
