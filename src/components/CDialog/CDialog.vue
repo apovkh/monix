@@ -39,7 +39,7 @@ const categoryComposable = useCategory()
 const categoryTypes = reactive(Object.values(CATEGORY_TYPES_COSTS))
 const selectedCategory = ref(CATEGORY_TYPES_COSTS.Food)
 
-const amount = ref<number>(0)
+const amount = ref<number>(null)
 const datePicker = ref(new Date())
 const isError = ref<boolean>(false)
 

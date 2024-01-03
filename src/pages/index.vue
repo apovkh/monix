@@ -118,7 +118,7 @@ const chartData = computed(() => {
           </VBtn>
 
           <div>
-            <b class="text-2xl mr-2">{{ wallerStore.totalBalance }}</b>
+            <b class="text-xl mr-2">{{ wallerStore.totalBalance }}</b>
             <small class="opacity-50">UAH</small>
           </div>
 
@@ -156,6 +156,7 @@ const chartData = computed(() => {
     <div class="tabs shadow shadow-sm shadow-light-500">
       <VTabs
         v-model="navigation"
+        bg-color="indigo"
         grow
       >
         <VTab
