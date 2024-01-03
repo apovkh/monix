@@ -21,10 +21,13 @@ export default defineNuxtConfig({
 	},
 	pwa: {
 		manifest: {
-			name: 'Monix Application',
+			name: 'Monix',
 			short_name: 'Monix',
-			theme_color: '#500',
+			theme_color: '#fff',
 			lang: 'en'
+		},
+		workbox: {
+			enabled: true
 		}
 	}
 })
