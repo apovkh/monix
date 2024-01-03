@@ -1,4 +1,4 @@
-export { ABlur } from './ABlur'
-export { AChart } from './AChart'
-export { ADialog } from './ADialog'
-export { ATable } from './ATable'
+export * from './ABlur'
+export * from './AChart'
+export * from './ADialog'
+export * from './ATable'
