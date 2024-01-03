@@ -12,7 +12,10 @@ export default defineNuxtConfig({
 		'@mdi/font/css/materialdesignicons.min.css'
 	],
 	build: {
-		transpile: ['vuetify']
+		transpile: [
+			'vuetify',
+			'ordered-uuid'
+		]
 	},
 	vite: {
 		define: {

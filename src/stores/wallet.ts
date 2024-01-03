@@ -1,4 +1,3 @@
-import Localbase from 'localbase'
 import { defineStore } from 'pinia'
 
 import {
@@ -8,8 +7,9 @@ import {
 
 import { CChart, CTable } from '../components'
 import type { IBalanceItem } from '../types/index'
+import Localbase from '../utils/localbase/index'
 
-const db = new Localbase('db')
+const db = new Localbase('monix')
 
 export const useWalletStore = defineStore('wallet', {
 	state: () => ({
