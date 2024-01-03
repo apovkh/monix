@@ -1,7 +1,3 @@
-import { createResolver } from '@nuxt/kit'
-
-const { resolve } = createResolver(import.meta.url)
-
 export default defineNuxtConfig({
 	srcDir: './src',
 	ssr: false,
@@ -35,10 +31,5 @@ export default defineNuxtConfig({
 		workbox: {
 			enabled: true
 		}
-	},
-	alias: {
-		'@types': resolve('../src/types/'),
-		'@stores': resolve('../src/stores/'),
-		'@composables': resolve('../src/composables/')
 	}
 })
