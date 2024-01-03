@@ -14,7 +14,7 @@ import {
 	mdiPlus
 } from '@mdi/js'
 
-import { CDialog } from '../components'
+import { ADialog } from '../components'
 import { useWalletStore } from '../stores/wallet'
 
 const wallerStore = useWalletStore()
@@ -37,7 +37,7 @@ onMounted(async () => {
     <div class="main">
       <div class="bg-indigo p-4">
 
-        <h2 class="text-4xl text-center mb-4 title-1">Balance</h2>
+        <h2 class="text-4xl text-center mb-4 title-1">Баланс</h2>
         <div class="flex gap-2 items-center justify-between">
           <VBtn
             rounded="xl"
@@ -105,7 +105,7 @@ onMounted(async () => {
 
   </div>
 
-  <CDialog
+  <ADialog
     v-model="isOpenDialog"
     :income="isIncome"
   />
