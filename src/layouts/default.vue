@@ -6,7 +6,8 @@ import {
 	ADrawer,
 	LFooter,
 	LHeader,
-	LMain
+	LMain,
+	ODrawerFilter
 } from '../components'
 const isOpenMenuDrawer = ref(false)
 const isOpenFiltersDrawer = ref(false)
@@ -46,12 +47,7 @@ const onFilterMenuClick = (): void => {
     menu
   </ADrawer>
 
-  <ADrawer
-    v-model="isOpenFiltersDrawer"
-    location="right"
-  >
-    filters
-  </ADrawer>
+  <ODrawerFilter v-model="isOpenFiltersDrawer" />
 </template>
 
 <style lang="scss">
@@ -68,30 +64,32 @@ const onFilterMenuClick = (): void => {
     &::after {
       content: '';
       @apply
-        absolute
+        fixed
         w-[40vw]
         h-[40vw]
-        rounded-1
         -z-1
         pointer-events-none
+        rounded-bl-[5vw]
 
       ;
-      // filter: blur(130px);
+      filter: blur(100px);
     }
 
     &::before {
       background-color: #E7B262;
       @apply
-        top-1
-        left-5
-      ;
-    }
+        top-0
+        left-0
+        rounded-tr-[5vw]
+        ;
+      }
 
-    &::after {
-      background-color: #88B4B3;
-      @apply
-        bottom-20
-        right-5
+      &::after {
+        background-color: #88B4B3;
+        @apply
+        bottom-0
+        right-0
+        rounded-bt-[5vw]
       ;
     }
   }

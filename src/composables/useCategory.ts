@@ -23,43 +23,43 @@ export function useCategory (): any {
 			color: '#ECEE81',
 			icon: mdiFood,
 			label: 'Їжа',
-			type: CATEGORY_TYPES_COSTS.Food
+			category: CATEGORY_TYPES_COSTS.Food
 		},
 		[CATEGORY_TYPES_COSTS.Gift]: {
 			color: '#8DDFCB',
 			icon: mdiGift,
 			label: 'Подарунки',
-			type: CATEGORY_TYPES_COSTS.Gift
+			category: CATEGORY_TYPES_COSTS.Gift
 		},
 		[CATEGORY_TYPES_COSTS.Apartment]: {
 			color: '#F875AA',
 			icon: mdiHomeCity,
 			label: 'Житло',
-			type: CATEGORY_TYPES_COSTS.Apartment
+			category: CATEGORY_TYPES_COSTS.Apartment
 		},
 		[CATEGORY_TYPES_COSTS.Sport]: {
 			color: '#6F61C0',
 			icon: mdiDumbbell,
 			label: 'Спорт',
-			type: CATEGORY_TYPES_COSTS.Sport
+			category: CATEGORY_TYPES_COSTS.Sport
 		},
 		[CATEGORY_TYPES_COSTS.Transport]: {
 			color: '#8BE8E5',
 			icon: mdiTrainCar,
 			label: 'Транспорт',
-			type: CATEGORY_TYPES_COSTS.Transport
+			category: CATEGORY_TYPES_COSTS.Transport
 		},
 		[CATEGORY_TYPES_COSTS.Medicine]: {
 			color: '#F99417',
 			icon: mdiPillMultiple,
 			label: 'Медицина',
-			type: CATEGORY_TYPES_COSTS.Medicine
+			category: CATEGORY_TYPES_COSTS.Medicine
 		},
 		[CATEGORY_TYPES_COSTS.Restaurants]: {
 			color: '#F6635C',
 			icon: mdiSilverwareForkKnife,
 			label: 'Ресторани',
-			type: CATEGORY_TYPES_COSTS.Restaurants
+			category: CATEGORY_TYPES_COSTS.Restaurants
 		}
 		// [CATEGORY_TYPES_INCOME.Income]: {
 		// 	color: '#00ff00',

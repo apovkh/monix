@@ -30,6 +30,7 @@ const onCloseClick = (): void => {
 			v-model="proxiedModelValue"
 			temporary
 			:location="location"
+			width="350"
 			class="a-drawer"
 		>
 			<header class="a-drawer-header">
