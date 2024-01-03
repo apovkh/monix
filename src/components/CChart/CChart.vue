@@ -1,20 +1,46 @@
 <script setup lang="ts">
+import { computed } from 'vue'
 import { ArcElement, Chart as ChartJS, Legend, Tooltip } from 'chart.js'
 import { Bar, Doughnut } from 'vue-chartjs'
 
+import { useCategory } from '../../composables/useCategory'
 import { useWalletStore } from '../../stores/wallet'
-ChartJS.register(ArcElement, Tooltip, Legend)
-const wallerStore = useWalletStore()
+import {
+	CATEGORY_TYPES_COSTS
+} from '../../types/index'
 
-const data = {
-	labels: ['VueJs', 'EmberJs', 'ReactJs', 'AngularJs'],
-	datasets: [
-		{
-			backgroundColor: ['#41B883', '#E46651', '#00D8FF', '#DD1B16'],
-			data: [40, 20, 80, 10]
-		}
-	]
-}
+ChartJS.register(ArcElement, Tooltip, Legend)
+
+const wallerStore = useWalletStore()
+const categoryComposable = useCategory()
+
+const balanceCount = computed(() => {
+	return Object.keys(CATEGORY_TYPES_COSTS).map(item => {
+		return wallerStore.balance.filter(i => i.type.name === item)
+			.reduce((acc, bal) => {
+				return acc + Math.abs(bal.amount)
+			}, 0)
+	})
+})
+
+const chartData = computed(() => {
+	return {
+		labels: Object.values(CATEGORY_TYPES_COSTS),
+		datasets: [
+			{
+				backgroundColor: Object.keys(CATEGORY_TYPES_COSTS)
+					.map((costs) => {
+						return categoryComposable.value[costs].color
+					}),
+				data: balanceCount.value
+			}
+		]
+	}
+})
+
+const displayChart = computed(() => {
+	return !!balanceCount.value.reduce((acc, i) => acc + i)
+})
 
 const options = {
 	responsive: true,
@@ -23,7 +49,23 @@ const options = {
 </script>
 
 <template>
-   <Doughnut :data="data" :options="options" />
+	<div class="text-center py-10">
+		<div
+			v-if="!displayChart"
+			class="text-center"
+		>
+		Data is empty
+	</div>
+		<template v-if="displayChart">
+			<h1 class="mb-10">Costs by chart</h1>
+			<div>
+				<Doughnut
+					:data="chartData"
+					:options="options"
+				/>
+			</div>
+		</template>
+	</div>
 </template>
 
 <style scoped>
