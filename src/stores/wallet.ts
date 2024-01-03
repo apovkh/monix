@@ -56,7 +56,7 @@ export const useWalletStore = defineStore('wallet', {
 			if (state?.balance?.length) {
 				return state.balance.reduce((acc, item) => {
 					return acc + Number(item.amount)
-				}, 0)
+				}, 0).toFixed(2)
 			}
 			return 0
 		}
