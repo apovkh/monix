@@ -5,7 +5,6 @@ export default defineNuxtConfig({
 		'nuxt-windicss',
 		'nuxt-vitest',
 		'@kevinmarrec/nuxt-pwa'
-		// '@vite-pwa/nuxt'
 	],
 	css: [
 		'vuetify/lib/styles/main.sass',
