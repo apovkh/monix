@@ -1,39 +1,66 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 import { ArcElement, Chart as ChartJS, Legend, Tooltip } from 'chart.js'
 import { Bar, Doughnut } from 'vue-chartjs'
+import {
+	VSelect
+} from 'vuetify/components'
 
+import { LBox, LSection } from '../../../components/layouts'
 import { useCategory } from '../../../composables/useCategory'
 import { useWalletStore } from '../../../stores/wallet'
+import { DATE_TYPES, type IBalanceItem } from '../../../types/'
+import { filterByDate } from '../../../utils/dataFilter'
 
 ChartJS.register(ArcElement, Tooltip, Legend)
 
 const wallerStore = useWalletStore()
 const categoryComposable = useCategory()
+const filterDate = ref(null)
 
 const existCatgories = computed(() => {
-	if (wallerStore.balance.length) {
-		return [...new Set(wallerStore.balance.map(item => item?.type.name))]
-	} return []
+	const groupedData = {}
+
+	wallerStore.balance.forEach(item => {
+		item.amount = Number(item.amount)
+
+		const typeName = item.type.name
+
+		if (groupedData[typeName]) {
+			groupedData[typeName].amount += item.amount
+		} else {
+			groupedData[typeName] = {
+				type: {
+					name: typeName,
+					icon: item.type.icon
+				},
+				amount: item.amount,
+				date: item.date
+			}
+		}
+	})
+	const result = Object.values(groupedData)
+	if (filterDate.value) {
+		return filterByDate(result, filterDate.value.value)
+	}
+
+	return result
 })
 
 const balanceCount = computed(() => {
 	return existCatgories.value.map(item => {
-		return wallerStore.balance.filter(i => i.type.name === item)
-			.reduce((acc, bal) => {
-				return acc + Math.abs(Number(bal.amount))
-			}, 0)
+		return Math.abs(Number(item.amount))
 	})
 })
 
 const chartData = computed(() => {
 	return {
-		labels: existCatgories.value,
+		labels: existCatgories.value.map(item => item.type.name),
 		datasets: [
 			{
 				backgroundColor: existCatgories.value
-					.map((costs) => {
-						return categoryComposable.value[costs].color
+					.map((item) => {
+						return categoryComposable.value[item.type.name].color
 					}),
 				data: balanceCount.value
 			}
@@ -45,6 +72,33 @@ const displayChart = computed(() => {
 	return !!balanceCount.value.reduce((acc, i) => acc + i, 0)
 })
 
+const timeFilterData = ref([
+	{
+		label: 'Сьогодні',
+		value: DATE_TYPES.Today
+	},
+	{
+		label: 'Вчора',
+		value: DATE_TYPES.Yesterday
+	},
+	{
+		label: 'Тиждень',
+		value: DATE_TYPES.Week
+	},
+	{
+		label: 'Місяць',
+		value: DATE_TYPES.Month
+	},
+	{
+		label: 'Рік',
+		value: DATE_TYPES.Year
+	},
+	{
+		label: 'Весь час',
+		value: DATE_TYPES.FullTime
+	}
+])
+
 const options = {
 	responsive: true,
 	maintainAspectRatio: false
@@ -52,23 +106,27 @@ const options = {
 </script>
 
 <template>
-	<div class="text-center p-4">
-		<div
-			v-if="!displayChart"
-			class="text-center"
-		>
-		Дані відсутні
-	</div>
-		<template v-if="displayChart">
-			<h1 class="mb-5 text-left text-xl">Графік витрат</h1>
+	<LSection
+		title="Графік витрат"
+		:subtitle="!displayChart ? 'Дані відсутні' : undefined"
+	>
+		<LBox>
+			<VSelect
+				v-model="filterDate"
+				label="Фільтр за датою"
+				item-title="label"
+				return-object
+				class="max-w-md"
+				:items="timeFilterData"
+			/>
 			<div>
 				<Doughnut
 					:data="chartData"
 					:options="options"
 				/>
 			</div>
-		</template>
-	</div>
+		</LBox>
+	</LSection>
 </template>
 
 <style scoped>
