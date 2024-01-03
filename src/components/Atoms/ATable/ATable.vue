@@ -9,33 +9,47 @@ import {
 	mdiDeleteEmpty
 } from '@mdi/js'
 
-import { useWalletStore } from '../../stores/wallet'
+import { useWalletStore } from '../../../stores/wallet'
+import type { IBalanceItem } from '../../../types/index'
+
+const props = defineProps<{
+  data: IBalanceItem[] | []
+  title?: string
+}>()
+
 const wallerStore = useWalletStore()
 </script>
 
 <template>
+  <div class="px-4 my-5">
+    <h2
+      v-if="title"
+      class="text-lg"
+    >{{ title }}</h2>
+  </div>
+
   <VTable
-    v-if="wallerStore.balance.length"
+    v-if="data.length"
     fixed-header
     rounded
   >
     <thead>
       <tr class="text-sm">
         <th class="text-left">
-          Category
+          Категорія
         </th>
         <th class="text-left">
-          Date
+          Дата
         </th>
         <th class="text-left">
-          Amount
+          Сума
         </th>
         <th />
       </tr>
     </thead>
     <tbody>
       <tr
-        v-for="item in wallerStore.balance"
+        v-for="item in data"
         :key="item.date"
         :class="[
           { 'bg-green-darken-4': item.income },
@@ -70,9 +84,9 @@ const wallerStore = useWalletStore()
     </tbody>
   </VTable>
   <div
-    v-if="!wallerStore.balance.length"
+    v-if="!data.length"
     class="text-center py-4"
-  >List is empty</div>
+  >Список порожній</div>
 </template>
 
 <style scoped>

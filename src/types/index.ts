@@ -22,3 +22,10 @@ export interface IBalanceItem {
 	amount: number | string
 	id: string | number
 }
+
+export interface INavigationItem {
+  icon: string
+  active: boolean
+  value: number | string
+  component: any
+}

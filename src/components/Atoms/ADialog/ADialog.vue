@@ -12,13 +12,13 @@ import {
 
 import { useDateFormat, useVModel } from '@vueuse/core'
 
-import { useCategory } from '../../composables/useCategory'
-import { useWalletStore } from '../../stores/wallet'
+import { useCategory } from '../../../composables/useCategory'
+import { useWalletStore } from '../../../stores/wallet'
 import {
 	CATEGORY_TYPES_COSTS,
 	CATEGORY_TYPES_INCOME,
 	type IBalanceItem
-} from '../../types/index'
+} from '../../../types/index'
 
 const props = withDefaults(
 	defineProps<{
@@ -28,6 +28,7 @@ const props = withDefaults(
 		income: true
 	}
 )
+
 defineEmits<{
   (e: 'update:modelValue', value: boolean): void
 }>()
@@ -39,7 +40,7 @@ const categoryComposable = useCategory()
 const categoryTypes = reactive(Object.values(CATEGORY_TYPES_COSTS))
 const selectedCategory = ref(CATEGORY_TYPES_COSTS.Food)
 
-const amount = ref<number>(null)
+const amount = ref<number>(undefined)
 const datePicker = ref(new Date())
 const isError = ref<boolean>(false)
 
@@ -49,14 +50,14 @@ const dateFormat = computed(() => {
 
 const actionButtonText = computed((): string => {
 	return props.income
-		? 'Add to balance'
-		: 'Add costs'
+		? 'Додати прибуток'
+		: 'Додати витрати'
 })
 
 const titleText = computed((): string => {
 	return props.income
-		? 'Balance'
-		: 'Costs'
+		? 'Прибуток'
+		: 'Витрата'
 })
 
 const onChangeBalance = (): void => {
@@ -91,7 +92,7 @@ const onCancel = (): void => {
 }
 
 watch(amount, (value) => {
-	if (value > 0) {
+	if (value && value > 0) {
 		isError.value = false
 	} else {
 		isError.value = true
@@ -104,14 +105,13 @@ watch(amount, (value) => {
 		v-model="proxiedModelValue"
 		width="800"
   >
-    <VCard
-      :title="titleText"
-    >
-      <div>
+    <VCard>
+      <div class="pt-5">
+				<h3 class="mx-4">{{ titleText }}</h3>
 				<div class="p-4">
 					<VTextField
 						v-model="amount"
-						label="Amount"
+						label="Сума"
 						type="number"
 						:hide-details="true"
 						class="mb-5"
@@ -122,7 +122,7 @@ watch(amount, (value) => {
 						v-if="!income"
 						v-model="selectedCategory"
 						:items="categoryTypes"
-						label="Category"
+						label="Категорія"
 						class="mb-5"
 					/>
 				</div>
@@ -140,7 +140,7 @@ watch(amount, (value) => {
 						color="gray"
 						@click="onCancel"
 					>
-						Cancel
+						Скасувати
 					</VBtn>
           <VBtn
             :rounded="true"
