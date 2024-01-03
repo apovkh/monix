@@ -1,3 +1,4 @@
+import Localbase from 'localbase'
 import { defineStore } from 'pinia'
 
 import {
@@ -7,6 +8,8 @@ import {
 
 import { CChart, CTable } from '../components'
 import type { IBalanceItem } from '../types/index'
+
+const db = new Localbase('db')
 
 export const useWalletStore = defineStore('wallet', {
 	state: () => ({
@@ -27,14 +30,21 @@ export const useWalletStore = defineStore('wallet', {
 		]
 	}),
 	actions: {
-		changeBalance (value: IBalanceItem) {
-			this.balance.unshift(value)
+		changeBalance (balanceItem: IBalanceItem) {
+			db.collection('balance').add(balanceItem)
+			this.balance.unshift(balanceItem)
 		},
 		removeBalance (id: IBalanceItem['id']) {
+			db.collection('balance').doc({ id }).delete()
+
 			this.balance.splice(
 				this.balance.findIndex(item => item.id === id),
 				1
 			)
+		},
+		async getBalance () {
+			const dbBalance = await db.collection('balance').get()
+			this.balance = dbBalance
 		}
 	},
 	getters: {
