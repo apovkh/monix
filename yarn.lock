@@ -7030,6 +7030,13 @@ optionator@^0.9.3:
     prelude-ls "^1.2.1"
     type-check "^0.4.0"
 
+ordered-uuid-v4@^0.2.1:
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/ordered-uuid-v4/-/ordered-uuid-v4-0.2.1.tgz#7cab9d9fdaa10f705e63444918291a3623e7ea08"
+  integrity sha512-bqduG54mrqhA14Hb8+LFCTKL5bzzoGbA2kThKXY9y/VSWq2LKEjzkTLW+v8B5wYV4WiwI6XcfAobxO4XJ8w1hA==
+  dependencies:
+    performance-now "^2.1.0"
+
 ordered-uuid@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/ordered-uuid/-/ordered-uuid-1.1.0.tgz#ffeb8cf8c61e7d084c49fed8a0203e48dd059ed1"
@@ -7209,6 +7216,11 @@ perfect-debounce@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/perfect-debounce/-/perfect-debounce-1.0.0.tgz#9c2e8bc30b169cc984a58b7d5b28049839591d2a"
   integrity sha512-xCy9V055GLEqoFaHoC1SoLIaLmWctgCUaBaWxDZ7/Zx4CTyX7cJQLJOok/orfjZAh9kEYpjJa4d0KcJmCbctZA==
+
+performance-now@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/performance-now/-/performance-now-2.1.0.tgz#6309f4e0e5fa913ec1c69307ae364b4b377c9e7b"
+  integrity sha512-7EAHlyLHI56VEIdK57uwHdHKIaAGbnXPiw0yWbarQZOKaKpvUIgW0jWRVLiatnM+XXlSwsanIBH/hzGMJulMow==
 
 picocolors@^1.0.0:
   version "1.0.0"
