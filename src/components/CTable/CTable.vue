@@ -71,7 +71,7 @@ const wallerStore = useWalletStore()
   </VTable>
   <div
     v-if="!wallerStore.balance.length"
-    class="text-center py-10"
+    class="text-center py-4"
   >List is empty</div>
 </template>
 

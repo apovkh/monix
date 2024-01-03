@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
 import {
 	VBtn,
 	VIcon,
@@ -26,6 +26,10 @@ const onChangeBalanceClick = (income: boolean): void => {
 	isIncome.value = income
 	isOpenDialog.value = true
 }
+
+onMounted(async () => {
+	await wallerStore.getBalance()
+})
 </script>
 
 <template>
