@@ -25,13 +25,13 @@ export const useWalletStore = defineStore('wallet', {
 			{
 				icon: mdiHandCoinOutline,
 				active: false,
-				value: 3,
+				value: 2,
 				component: MIncomeTable
 			},
 			{
 				icon: mdiChartArc,
 				active: false,
-				value: 2,
+				value: 3,
 				component: AChart
 			}
 		] as INavigationItem[]

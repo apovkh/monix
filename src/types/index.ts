@@ -1,6 +1,6 @@
 export enum CATEGORY_TYPES_COSTS {
   Food = 'Food',
-  Apartment = 'apartment',
+  Apartment = 'Apartment',
   Transport = 'Transport',
   Sport = 'Sport',
   Medicine = 'Medicine',
@@ -12,9 +12,18 @@ export enum CATEGORY_TYPES_INCOME {
   Income = 'Income'
 }
 
+export enum DATE_TYPES {
+  Today,
+  Yesterday,
+  Week,
+  Month,
+  Year,
+  FullTime
+}
+
 export interface IBalanceItem {
   income: boolean
-	date: string
+	date: any
 	type: {
 		name: CATEGORY_TYPES_COSTS | CATEGORY_TYPES_INCOME
 		icon?: string
