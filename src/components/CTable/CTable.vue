@@ -38,7 +38,7 @@ const wallerStore = useWalletStore()
         v-for="item in wallerStore.balance"
         :key="item.date"
         :class="[
-          { 'bg-green-darken-4': item.increase },
+          { 'bg-green-darken-4': item.income },
           'text-sm'
         ]"
       >

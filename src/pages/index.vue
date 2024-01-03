@@ -139,16 +139,18 @@ const chartData = computed(() => {
       </div>
     </div>
 
-    <div class="flex-grow-1 overflow-auto">
-      <VWindow v-model="navigation">
-        <VWindowItem
-          v-for="nav in wallerStore.navigations"
-          :key="nav.value"
-          :value="nav.value"
-        >
-          <Component :is="nav.component" />
-        </VWindowItem>
-      </VWindow>
+    <div class="flex-grow-1 relative">
+      <div class="absolute overflow-y-auto inset-0">
+        <VWindow v-model="navigation">
+          <VWindowItem
+            v-for="nav in wallerStore.navigations"
+            :key="nav.value"
+            :value="nav.value"
+          >
+            <Component :is="nav.component" />
+          </VWindowItem>
+        </VWindow>
+      </div>
     </div>
 
     <div class="tabs shadow shadow-sm shadow-light-500">

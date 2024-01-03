@@ -10,6 +10,12 @@ ChartJS.register(ArcElement, Tooltip, Legend)
 const wallerStore = useWalletStore()
 const categoryComposable = useCategory()
 
+const existCatgories = computed(() => {
+	if (wallerStore.balance.length) {
+		return [...new Set(wallerStore.balance.map(item => item?.type.name))]
+	} return []
+})
+
 const balanceCount = computed(() => {
 	return existCatgories.value.map(item => {
 		return wallerStore.balance.filter(i => i.type.name === item)
@@ -18,10 +24,6 @@ const balanceCount = computed(() => {
 			}, 0)
 	})
 })
-
-const existCatgories = computed(() => wallerStore.balance.map(item => {
-	return item.type.name
-}))
 
 const chartData = computed(() => {
 	return {
@@ -39,7 +41,7 @@ const chartData = computed(() => {
 })
 
 const displayChart = computed(() => {
-	return !!balanceCount.value.reduce((acc, i) => acc + i)
+	return !!balanceCount.value.reduce((acc, i) => acc + i, 0)
 })
 
 const options = {
