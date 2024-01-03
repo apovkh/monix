@@ -109,15 +109,6 @@ watch(amount, (value) => {
       <div class="pt-5">
 				<h3 class="mx-4">{{ titleText }}</h3>
 				<div class="p-4">
-					<VTextField
-						v-model="amount"
-						label="Сума"
-						type="number"
-						:hide-details="true"
-						class="mb-5"
-						:error="isError"
-					/>
-
 					<VAutocomplete
 						v-if="!income"
 						v-model="selectedCategory"
