@@ -9,19 +9,19 @@ import {
 import { LBox, LSection } from '../../../components'
 import { useCategory } from '../../../composables/useCategory'
 import { useWalletStore } from '../../../stores/wallet'
-import { DATE_TYPES, type IBalanceItem } from '../../../types/'
+import { DATE_TYPES } from '../../../types/'
 import { filterByDate } from '../../../utils/dataFilter'
 
 ChartJS.register(ArcElement, Tooltip, Legend)
 
-const wallerStore = useWalletStore()
+const walletStore = useWalletStore()
 const categoryComposable = useCategory()
 const filterDate = ref(null)
 
 const existCatgories = computed(() => {
 	const groupedData = {}
 
-	wallerStore.balance.forEach(item => {
+	walletStore.balance.forEach(item => {
 		item.amount = Number(item.amount)
 
 		const typeName = item.type.name

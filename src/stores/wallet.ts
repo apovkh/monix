@@ -9,7 +9,12 @@ import {
 import { useDateFormat, useNow } from '@vueuse/core'
 
 import { AChart, MBalanceTable, MIncomeTable } from '../components'
-import type { IBalanceItem, ICategory, INavigationItem } from '../types/index'
+import type {
+	IBalanceItem,
+	ICategory,
+	INavigationItem
+} from '../types/index'
+import { CATEGORY_TYPES_INCOME } from '../types/index'
 import Localbase from '../utils/localbase/index'
 
 const db = new Localbase('monix')
@@ -17,10 +22,14 @@ const db = new Localbase('monix')
 export const useWalletStore = defineStore('wallet', {
 	state: () => ({
 		balance: [] as IBalanceItem[],
-		amount: 0 as number,
+		amount: null as number | null,
 		cost: {
 			isOpenDialog: false as boolean,
 			selectedCategory: {} as ICategory,
+			comment: '' as IBalanceItem['comment']
+		},
+		income: {
+			isOpenDialog: false as boolean,
 			comment: '' as IBalanceItem['comment']
 		},
 		navigations: [
@@ -68,6 +77,28 @@ export const useWalletStore = defineStore('wallet', {
 			this.cost.isOpenDialog = false
 			this.cost.selectedCategory = {} as ICategory
 			this.cost.comment = ''
+			this.amount = null
+		},
+		resetIncomeData () {
+			this.income.isOpenDialog = false
+			this.income.comment = ''
+			this.amount = null
+		},
+		addIcome () {
+			const income = {
+				income: true,
+				date: useDateFormat(useNow().value, 'YYYY-MM-DD').value,
+				type: CATEGORY_TYPES_INCOME.Income,
+				icon: mdiHandCoinOutline,
+				amount: this.amount,
+				comment: this.income.comment,
+				id: uuidv4()
+			} as IBalanceItem
+
+			this.balance.unshift(income)
+
+			db.collection('balance').add(income)
+			this.resetIncomeData()
 		},
 		removeBalance (id: IBalanceItem['id']) {
 			db.collection('balance').doc({ id }).delete()

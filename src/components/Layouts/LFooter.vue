@@ -15,12 +15,12 @@ import { ABlur } from '../'
 
 import { LBox } from './'
 
-const wallerStore = useWalletStore()
+const walletStore = useWalletStore()
 
 const isError = ref<boolean>(false)
 
 const validAmount = () => {
-	if (!wallerStore.amount || wallerStore.amount < 0) {
+	if (!walletStore.amount || walletStore.amount < 0) {
 		isError.value = true
 		return false
 	}
@@ -30,17 +30,17 @@ const validAmount = () => {
 
 const onClickIncome = () => {
 	if (validAmount()) {
-		//
+		walletStore.income.isOpenDialog = true
 	}
 }
 
 const onClickAddCost = () => {
 	if (validAmount()) {
-		wallerStore.cost.isOpenDialog = true
+		walletStore.cost.isOpenDialog = true
 	}
 }
 
-watch(wallerStore.amount, (value) => {
+watch(walletStore.amount, (value) => {
 	if (value && value > 0) {
 		isError.value = false
 	} else {
@@ -49,8 +49,9 @@ watch(wallerStore.amount, (value) => {
 })
 
 onMounted(async () => {
-	await wallerStore.getBalance()
+	await walletStore.getBalance()
 })
+
 </script>
 
 <template>
@@ -67,11 +68,13 @@ onMounted(async () => {
           </VBtn>
 
           <VTextField
-            v-model="wallerStore.amount"
+            v-model="walletStore.amount"
             label="Сума"
             type="number"
+            rounded
             variant="outlined"
             :hide-details="true"
+            validate-on="blur"
             :error="isError"
           />
 

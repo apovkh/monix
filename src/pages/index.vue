@@ -8,27 +8,27 @@ import {
 	VWindowItem
 } from 'vuetify/components'
 
-import { ATable, ODialogCost } from '../components'
+import { ATable, ODialogCost, ODialogIncome } from '../components'
 import { useWalletStore } from '../stores/wallet'
 
-const wallerStore = useWalletStore()
+const walletStore = useWalletStore()
 const navigation = ref(null)
 
 onMounted(async () => {
-	await wallerStore.getBalance()
+	await walletStore.getBalance()
 })
 </script>
 
 <template>
   <div class="p-main">
     <ATable
-      :data="wallerStore.balance"
+      :data="walletStore.balance"
       title="Список витрат/прибутків"
     />
     <!-- <div class="flex-grow-1 relative"> -->
       <!-- <VWindow v-model="navigation"> -->
         <!-- <VWindowItem -->
-          <!-- v-for="nav in wallerStore.navigations" -->
+          <!-- v-for="nav in walletStore.navigations" -->
           <!-- :key="nav.value" -->
           <!-- :value="nav.value" -->
         <!-- > -->
@@ -44,7 +44,7 @@ onMounted(async () => {
         <!-- grow -->
       <!-- > -->
         <!-- <VTab -->
-          <!-- v-for="nav in wallerStore.navigations" -->
+          <!-- v-for="nav in walletStore.navigations" -->
           <!-- :key="nav.value" -->
           <!-- :value="nav.value" -->
         <!-- > -->
@@ -54,10 +54,11 @@ onMounted(async () => {
     <!-- </div> -->
 
   </div>
-  <ODialogCost v-model="wallerStore.cost.isOpenDialog" />
+  <ODialogCost v-model="walletStore.cost.isOpenDialog" />
+  <ODialogIncome v-model="walletStore.income.isOpenDialog" />
 
   <!-- <ADialog -->
-    <!-- v-model="wallerStore.isOpenDialog" -->
+    <!-- v-model="walletStore.isOpenDialog" -->
     <!-- :income="isIncome" -->
   <!-- /> -->
 </template>
