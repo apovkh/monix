@@ -101,13 +101,13 @@ const chartData = computed(() => {
 <template>
   <div class="p-main">
     <ATable
-      :data="wallerStore.balance"
+      :data="walletStore.balance"
       title="Список витрат/прибутків"
     />
     <!-- <div class="flex-grow-1 relative"> -->
       <!-- <VWindow v-model="navigation"> -->
         <!-- <VWindowItem -->
-          <!-- v-for="nav in wallerStore.navigations" -->
+          <!-- v-for="nav in walletStore.navigations" -->
           <!-- :key="nav.value" -->
           <!-- :value="nav.value" -->
         <!-- > -->
@@ -123,7 +123,7 @@ const chartData = computed(() => {
         <!-- grow -->
       <!-- > -->
         <!-- <VTab -->
-          <!-- v-for="nav in wallerStore.navigations" -->
+          <!-- v-for="nav in walletStore.navigations" -->
           <!-- :key="nav.value" -->
           <!-- :value="nav.value" -->
         <!-- > -->
@@ -133,7 +133,8 @@ const chartData = computed(() => {
     <!-- </div> -->
 
   </div>
-  <ODialogCost v-model="wallerStore.cost.isOpenDialog" />
+  <ODialogCost v-model="walletStore.cost.isOpenDialog" />
+  <ODialogIncome v-model="walletStore.income.isOpenDialog" />
 
   <ODialogCost v-model="walletStore.cost.isOpenDialog" />
   <ODialogIncome v-model="walletStore.income.isOpenDialog" />
