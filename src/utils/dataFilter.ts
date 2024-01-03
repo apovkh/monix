@@ -1,11 +1,14 @@
 import { DATE_TYPES, type IBalanceItem } from '../types/'
 
-export function filterByDate (inputArray: IBalanceItem[], filterType: DATE_TYPES) {
+export function filterByDate (
+	inputArray: IBalanceItem[],
+	filterType: DATE_TYPES
+): IBalanceItem[] {
 	const currentDate = new Date()
-	const oneDay = 24 * 60 * 60 * 1000 // One day in milliseconds
+	const oneDay = 24 * 60 * 60 * 1000
 	const oneWeek = 7 * oneDay
 
-	return inputArray.filter(item => {
+	return inputArray.filter((item: IBalanceItem) => {
 		const itemDate = new Date(item.date)
 
 		if (filterType === DATE_TYPES.Today) {

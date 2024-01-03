@@ -9,12 +9,12 @@ import {
 import { useDateFormat, useNow } from '@vueuse/core'
 
 import { AChart, MBalanceTable, MIncomeTable } from '../components'
-import type {
-	IBalanceItem,
-	ICategory,
-	INavigationItem
+import {
+	CATEGORY_TYPES_INCOME,
+	type IBalanceItem,
+	type ICategory,
+	type INavigationItem
 } from '../types/index'
-import { CATEGORY_TYPES_INCOME } from '../types/index'
 import Localbase from '../utils/localbase/index'
 
 const db = new Localbase('monix')

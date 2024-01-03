@@ -9,7 +9,7 @@ import {
 import { LBox, LSection } from '../../../components'
 import { useCategory } from '../../../composables/useCategory'
 import { useWalletStore } from '../../../stores/wallet'
-import { DATE_TYPES } from '../../../types/'
+import { DATE_TYPES } from '../../../types'
 import { filterByDate } from '../../../utils/dataFilter'
 
 ChartJS.register(ArcElement, Tooltip, Legend)
