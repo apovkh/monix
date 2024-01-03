@@ -3,15 +3,10 @@
 </script>
 
 <template>
-    <div class="l-box">
-      <slot />
-    </div>
+  <div class="l-box">
+    <slot />
+  </div>
 </template>
 
 <style scoped>
-  .l-box {
-    @apply
-      px-2
-    ;
-  }
 </style>

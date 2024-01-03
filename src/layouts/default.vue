@@ -1,19 +1,22 @@
 <script setup lang="ts">
-//
+import { LBox, LHeader, LMain } from '../components/Layouts'
 </script>
 
 <template>
   <div class="l-wrapper">
     <header class="l-header">
-      Header
+      <!-- <LBox> -->
+        <!-- <LHeader /> -->
+      <!-- </LBox> -->
     </header>
 
     <main class="l-main">
-      <slot />
+      <LBox class="h-full flex">
+        <slot />
+      </LBox>
     </main>
 
     <footer class="l-footer">
-      Footer
     </footer>
   </div>
 </template>

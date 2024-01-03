@@ -4,7 +4,8 @@ export default defineNuxtConfig({
 	modules: [
 		'nuxt-windicss',
 		'nuxt-vitest',
-		'@kevinmarrec/nuxt-pwa'
+		'@kevinmarrec/nuxt-pwa',
+		'@pinia/nuxt'
 	],
 	css: [
 		'vuetify/lib/styles/main.sass',
