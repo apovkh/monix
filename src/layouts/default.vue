@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { LBox, LHeader, LMain } from '../components/Layouts'
 </script>
 
 <template>
