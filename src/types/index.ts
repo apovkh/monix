@@ -8,15 +8,15 @@ export enum CATEGORY_TYPES_COSTS {
   Restaurants = 'Restaurants'
 }
 
-export enum CATEGORY_TYPES_INCREASE {
-  Increase = 'Increase'
+export enum CATEGORY_TYPES_INCOME {
+  Income = 'Income'
 }
 
 export interface IBalanceItem {
-  increase: boolean
+  income: boolean
 	date: string
 	type: {
-		name: CATEGORY_TYPES_COSTS
+		name: CATEGORY_TYPES_COSTS | CATEGORY_TYPES_INCOME
 		icon?: string
 	}
 	amount: number | string
