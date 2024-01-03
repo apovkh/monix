@@ -27,6 +27,33 @@ const displayChart = computed(() => {
 	return !!balanceCount.value.reduce((acc, i) => acc + i, 0)
 })
 
+const timeFilterData = ref([
+	{
+		label: 'Сьогодні',
+		value: DATE_TYPES.Today
+	},
+	{
+		label: 'Вчора',
+		value: DATE_TYPES.Yesterday
+	},
+	{
+		label: 'Тиждень',
+		value: DATE_TYPES.Week
+	},
+	{
+		label: 'Місяць',
+		value: DATE_TYPES.Month
+	},
+	{
+		label: 'Рік',
+		value: DATE_TYPES.Year
+	},
+	{
+		label: 'Весь час',
+		value: DATE_TYPES.FullTime
+	}
+])
+
 const options = {
 	responsive: true,
 	maintainAspectRatio: false
