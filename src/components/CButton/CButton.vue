@@ -2,7 +2,7 @@
 import { VBtn } from 'vuetify/components'
 
 defineProps<{
-  text: string
+  text?: string
 }>()
 </script>
 
