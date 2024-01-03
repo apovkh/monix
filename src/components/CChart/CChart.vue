@@ -5,14 +5,13 @@ import { Bar, Doughnut } from 'vue-chartjs'
 
 import { useCategory } from '../../composables/useCategory'
 import { useWalletStore } from '../../stores/wallet'
-import { CATEGORY_TYPES_COSTS } from '../../types/index'
 ChartJS.register(ArcElement, Tooltip, Legend)
 
 const wallerStore = useWalletStore()
 const categoryComposable = useCategory()
 
 const balanceCount = computed(() => {
-	return Object.keys(CATEGORY_TYPES_COSTS).map(item => {
+	return existCatgories.value.map(item => {
 		return wallerStore.balance.filter(i => i.type.name === item)
 			.reduce((acc, bal) => {
 				return acc + Math.abs(bal.amount)
@@ -20,12 +19,16 @@ const balanceCount = computed(() => {
 	})
 })
 
+const existCatgories = computed(() => wallerStore.balance.map(item => {
+	return item.type.name
+}))
+
 const chartData = computed(() => {
 	return {
-		labels: Object.values(CATEGORY_TYPES_COSTS),
+		labels: existCatgories.value,
 		datasets: [
 			{
-				backgroundColor: Object.keys(CATEGORY_TYPES_COSTS)
+				backgroundColor: existCatgories.value
 					.map((costs) => {
 						return categoryComposable.value[costs].color
 					}),
