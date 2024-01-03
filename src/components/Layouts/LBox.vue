@@ -9,9 +9,4 @@
 </template>
 
 <style scoped>
-  .l-box {
-    @apply
-      px-2
-    ;
-  }
 </style>

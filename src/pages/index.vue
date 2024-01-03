@@ -100,12 +100,72 @@ const chartData = computed(() => {
 
 <template>
   <div class="p-main">
-    <LHeader />
-    <LMain>
-      <LBox>
-        <CButton text="m button text" />
-      </LBox>
-    </LMain>
+    <div class="main">
+      <div class="bg-indigo p-4">
+
+        <h2 class="text-center mb-4">Balance</h2>
+        <div class="flex gap-2 items-center justify-between">
+          <VBtn
+            rounded="xl"
+            size="x-large"
+            color="green"
+            @click="onChangeBalanceClick(true)"
+          >
+            <VIcon
+              size="x-large"
+              :icon="mdiPlus"
+            />
+          </VBtn>
+
+          <div>
+            <b class="text-xl mr-2">{{ wallerStore.totalBalance }}</b>
+            <small class="opacity-50">UAH</small>
+          </div>
+
+          <VBtn
+            rounded="xl"
+            size="x-large"
+            class="px-0"
+            color="orange"
+            @click="onChangeBalanceClick(false)"
+          >
+            <VIcon
+              size="x-large"
+              :icon="mdiMinus"
+            />
+          </VBtn>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="flex-grow-1 overflow-auto">
+      <VWindow v-model="navigation">
+      <VWindowItem
+        v-for="nav in wallerStore.navigations"
+        :key="nav.value"
+        :value="nav.value"
+      >
+        <Component :is="nav.component" />
+      </VWindowItem>
+    </VWindow>
+    </div>
+
+    <div class="tabs">
+      <VTabs
+        v-model="navigation"
+        grow
+      >
+        <VTab
+          v-for="nav in wallerStore.navigations"
+          :key="nav.value"
+          :value="nav.value"
+        >
+          <VIcon :icon="nav.icon" />
+        </VTab>
+      </VTabs>
+    </div>
+
   </div>
 
   <ODialogCost v-model="walletStore.cost.isOpenDialog" />
