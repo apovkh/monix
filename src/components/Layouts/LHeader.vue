@@ -5,8 +5,6 @@ import LBox from './LBox.vue'
 <template>
   <header class="l-header">
     <LBox>
-      burger menu
-      logo
     </LBox>
   </header>
 </template>
