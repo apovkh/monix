@@ -100,35 +100,40 @@ const chartData = computed(() => {
 
 <template>
   <div class="p-main">
-    <div class="flex-grow-1 relative">
-      <VWindow v-model="navigation">
-        <VWindowItem
-          v-for="nav in wallerStore.navigations"
-          :key="nav.value"
-          :value="nav.value"
-        >
-          <Component :is="nav.component" />
-        </VWindowItem>
-      </VWindow>
-    </div>
+    <ATable
+      :data="wallerStore.balance"
+      title="Список витрат/прибутків"
+    />
+    <!-- <div class="flex-grow-1 relative"> -->
+      <!-- <VWindow v-model="navigation"> -->
+        <!-- <VWindowItem -->
+          <!-- v-for="nav in wallerStore.navigations" -->
+          <!-- :key="nav.value" -->
+          <!-- :value="nav.value" -->
+        <!-- > -->
+          <!-- <Component :is="nav.component" /> -->
+        <!-- </VWindowItem> -->
+      <!-- </VWindow> -->
+    <!-- </div> -->
 
-    <div class="tabs shadow shadow-sm shadow-light-500">
-      <VTabs
-        v-model="navigation"
-        bg-color="indigo"
-        grow
-      >
-        <VTab
-          v-for="nav in wallerStore.navigations"
-          :key="nav.value"
-          :value="nav.value"
-        >
-          <VIcon :icon="nav.icon" />
-        </VTab>
-      </VTabs>
-    </div>
+    <!-- <div class="tabs shadow shadow-sm shadow-light-500"> -->
+      <!-- <VTabs -->
+        <!-- v-model="navigation" -->
+        <!-- bg-color="indigo" -->
+        <!-- grow -->
+      <!-- > -->
+        <!-- <VTab -->
+          <!-- v-for="nav in wallerStore.navigations" -->
+          <!-- :key="nav.value" -->
+          <!-- :value="nav.value" -->
+        <!-- > -->
+          <!-- <VIcon :icon="nav.icon" /> -->
+        <!-- </VTab> -->
+      <!-- </VTabs> -->
+    <!-- </div> -->
 
   </div>
+  <ODialogCost v-model="wallerStore.cost.isOpenDialog" />
 
   <ODialogCost v-model="walletStore.cost.isOpenDialog" />
   <ODialogIncome v-model="walletStore.income.isOpenDialog" />
