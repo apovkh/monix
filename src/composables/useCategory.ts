@@ -66,11 +66,5 @@ export function useCategory (): any {
 			label: 'Надходження',
 			value: CATEGORY_TYPES_INCOME.Income
 		}
-		// [CATEGORY_TYPES_INCOME.Income]: {
-		// 	color: '#00ff00',
-		// 	icon: mdiHandCoinOutline,
-		// 	label: 'Надходження',
-		// 	value: CATEGORY_TYPES_INCOME.Income
-		// }
 	}))
 }

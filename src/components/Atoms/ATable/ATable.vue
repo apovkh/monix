@@ -9,7 +9,6 @@ import {
 	mdiCommentProcessingOutline,
 	mdiDeleteEmpty
 } from '@mdi/js'
-import { useDateFormat } from '@vueuse/core'
 
 import { LSection } from '../../../components'
 

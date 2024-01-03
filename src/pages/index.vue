@@ -101,38 +101,20 @@ const chartData = computed(() => {
 <template>
   <div class="p-main">
     <ATable
+      v-if="menuStore.view === DATA_SCREEN_VIEW.Table"
       :data="filtersStore.filteredBalance"
-      title="Список витрат/прибутків"
+      :title="tableTitle"
+			@remove-item="onRemoveBalanceItem"
     />
-    <!-- <div class="flex-grow-1 relative"> -->
-      <!-- <VWindow v-model="navigation"> -->
-        <!-- <VWindowItem -->
-          <!-- v-for="nav in walletStore.navigations" -->
-          <!-- :key="nav.value" -->
-          <!-- :value="nav.value" -->
-        <!-- > -->
-          <!-- <Component :is="nav.component" /> -->
-        <!-- </VWindowItem> -->
-      <!-- </VWindow> -->
-    <!-- </div> -->
 
-    <!-- <div class="tabs shadow shadow-sm shadow-light-500"> -->
-      <!-- <VTabs -->
-        <!-- v-model="navigation" -->
-        <!-- bg-color="indigo" -->
-        <!-- grow -->
-      <!-- > -->
-        <!-- <VTab -->
-          <!-- v-for="nav in walletStore.navigations" -->
-          <!-- :key="nav.value" -->
-          <!-- :value="nav.value" -->
-        <!-- > -->
-          <!-- <VIcon :icon="nav.icon" /> -->
-        <!-- </VTab> -->
-      <!-- </VTabs> -->
-    <!-- </div> -->
-
+    <AChart
+			v-if="menuStore.view === DATA_SCREEN_VIEW.Chart"
+			:title="chartTitle"
+			:categories="existCatgories"
+			:chart-data="chartData"
+		/>
   </div>
+
   <ODialogCost v-model="walletStore.cost.isOpenDialog" />
   <ODialogIncome v-model="walletStore.income.isOpenDialog" />
 
