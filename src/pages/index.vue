@@ -118,7 +118,7 @@ const chartData = computed(() => {
           </VBtn>
 
           <div>
-            <b class="text-3xl mr-2">{{ wallerStore.totalBalance }}</b>
+            <b class="text-2xl mr-2">{{ wallerStore.totalBalance }}</b>
             <small class="opacity-50">UAH</small>
           </div>
 
