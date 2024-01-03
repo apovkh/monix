@@ -30,8 +30,7 @@ export default defineNuxtConfig({
 		manifest: {
 			name: 'Monix',
 			short_name: 'Monix',
-			theme_color: '#fff',
-			lang: 'ua'
+			theme_color: '#fff'
 		},
 		workbox: {
 			enabled: true
