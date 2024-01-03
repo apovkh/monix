@@ -15,7 +15,7 @@ import {
 } from '@mdi/js'
 
 import { ADialog } from '../components'
-import { LBox } from '../components/layouts'
+import { LBox } from '../components/Layouts'
 import { useWalletStore } from '../stores/wallet'
 
 const wallerStore = useWalletStore()
