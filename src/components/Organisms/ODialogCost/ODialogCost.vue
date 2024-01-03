@@ -5,7 +5,7 @@ import { useVModel } from '@vueuse/core'
 
 import { useCategory } from '../../../composables/useCategory'
 import { useWalletStore } from '../../../stores/wallet'
-import type { ICategory } from '../../../types/index'
+import type { ICategory } from '../../../types'
 import { MCategories } from '../../'
 
 const props = withDefaults(

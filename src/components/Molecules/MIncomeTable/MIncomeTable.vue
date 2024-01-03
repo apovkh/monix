@@ -2,7 +2,7 @@
 import { computed } from 'vue'
 
 import { useWalletStore } from '../../../stores/wallet'
-import { CATEGORY_TYPES_INCOME } from '../../../types/index'
+import { CATEGORY_TYPES_INCOME } from '../../../types'
 import { ATable } from '../../'
 
 const walletStore = useWalletStore()
