@@ -109,23 +109,25 @@ watch(amount, (value) => {
     <VCard
       :title="titleText"
     >
-      <div class="p-4">
-        <VTextField
-          v-model="amount"
-          label="Amount"
-          type="number"
-          :hide-details="true"
-          class="mb-5"
-          :error="isError"
-          />
+      <div>
+				<div class="p-4">
+					<VTextField
+						v-model="amount"
+						label="Amount"
+						type="number"
+						:hide-details="true"
+						class="mb-5"
+						:error="isError"
+					/>
 
-          <VAutocomplete
+					<VAutocomplete
 						v-if="!increase"
-            v-model="selectedCategory"
-            :items="categoryTypes"
-            label="Category"
-            class="mb-5"
-          />
+						v-model="selectedCategory"
+						:items="categoryTypes"
+						label="Category"
+						class="mb-5"
+					/>
+				</div>
 
         <VDatePicker
           v-model="datePicker"
@@ -134,7 +136,7 @@ watch(amount, (value) => {
           class="mb-5"
         />
 
-        <div class="flex flex-wrap gap-4 justify-end">
+        <div class="flex flex-wrap gap-4 p-4 justify-end">
 					<VBtn
 						:rounded="true"
 						color="gray"
