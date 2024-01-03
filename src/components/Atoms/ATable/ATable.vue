@@ -10,7 +10,7 @@ import {
 } from '@mdi/js'
 import { useDateFormat } from '@vueuse/core'
 
-import { LSection } from '../../../components/Layouts'
+import { LSection } from '../../../components'
 import { useWalletStore } from '../../../stores/wallet'
 import type { IBalanceItem } from '../../../types/index'
 

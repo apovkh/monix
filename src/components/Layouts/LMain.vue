@@ -4,7 +4,7 @@ import LBox from './LBox.vue'
 
 <template>
   <main class="l-main">
-    <LBox>
+    <LBox class="h-full">
       <slot />
     </LBox>
   </main>
