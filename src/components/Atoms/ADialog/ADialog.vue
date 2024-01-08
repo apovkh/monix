@@ -3,12 +3,10 @@ import { VDialog } from 'vuetify/components'
 
 import { useVModel } from '@vueuse/core'
 
+import type { IADialogPropsTypes } from './'
+
 const props = withDefaults(
-	defineProps<{
-		modelValue: boolean
-		transition?: string
-		width?: string | number
-  }>(),
+	defineProps<IADialogPropsTypes>(),
 	{
 		transition: 'dialog-bottom-transition',
 		width: 'auto'

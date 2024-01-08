@@ -5,12 +5,10 @@ import { useVModel } from '@vueuse/core'
 
 import { useWalletStore } from '../../../stores/wallet'
 import { ADialog } from '../../'
-const props = withDefaults(
-	defineProps<{
-		modelValue: boolean
-  }>(),
-	{}
-)
+
+import type { IODialogIncomePropsTypes } from './'
+
+const props = defineProps<IODialogIncomePropsTypes>()
 
 defineEmits<{
   (e: 'update:modelValue', value: boolean): void
@@ -59,7 +57,7 @@ const onClickAddCost = (): void => {
 	</ADialog>
 </template>
 
-<style scoped>
+<style lang="scss">
 	.o-dialog-income {
 		&-title {
 			@apply

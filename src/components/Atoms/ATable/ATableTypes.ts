@@ -1,6 +1,5 @@
 import type { IBalanceItem } from '../../../types'
-
-export interface IATablePropsTypes {
+import type { LSectionPropsTypes } from '../../'
+export interface IATablePropsTypes extends LSectionPropsTypes {
   data: IBalanceItem[] | []
-  title?: string
 }

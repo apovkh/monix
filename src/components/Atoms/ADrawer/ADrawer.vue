@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { ref } from 'vue'
 import { VBtn, VLayout, VNavigationDrawer } from 'vuetify/components'
 
 import { mdiClose } from '@mdi/js'
@@ -19,6 +18,7 @@ defineEmits<{
 }>()
 
 const proxiedModelValue = useVModel(props, 'modelValue')
+
 const onCloseClick = (): void => {
 	proxiedModelValue.value = false
 }
@@ -28,8 +28,8 @@ const onCloseClick = (): void => {
 	<VLayout>
 		<VNavigationDrawer
 			v-model="proxiedModelValue"
-			temporary
 			:location="location"
+			temporary
 			width="350"
 			class="a-drawer"
 		>
@@ -48,7 +48,7 @@ const onCloseClick = (): void => {
 	</VLayout>
 </template>
 
-<style scoped lang="scss">
+<style lang="scss">
 	.a-drawer {
 		&-header {
 			@apply

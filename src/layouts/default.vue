@@ -3,23 +3,22 @@ import { ref } from 'vue'
 
 import {
 	ABlur,
-	ADrawer,
 	LFooter,
 	LHeader,
 	LMain,
 	ODrawerFilter,
 	ODrawerMenu
 } from '../components'
-const isOpenMenuDrawer = ref(false)
-const isOpenFiltersDrawer = ref(false)
 
-const onHeaderMenuClick = (): void => {
-	isOpenMenuDrawer.value = !isOpenMenuDrawer.value
-}
+import { useDefaultLayout } from './handlers'
 
-const onFilterMenuClick = (): void => {
-	isOpenFiltersDrawer.value = !isOpenFiltersDrawer.value
-}
+// eslint-disable-next-line @typescript-eslint/typedef
+const {
+	isOpenMenuDrawer,
+	isOpenFiltersDrawer,
+	headerMenuClick: onHeaderMenuClick,
+	filterMenuClick: onFilterMenuClick
+} = useDefaultLayout()
 </script>
 
 <template>

@@ -14,24 +14,21 @@ import { LSection } from '../../../components'
 
 import type { IATablePropsTypes } from './'
 
-const props = defineProps<{
-  data: IATablePropsTypes['data']
-  title: IATablePropsTypes['title']
-}>()
+defineProps<IATablePropsTypes>()
 
 const emit = defineEmits<{
-  (e: 'remove-item', value: number): void
+  (e: 'remove-balance-item', value: number): void
 }>()
 
-const onClickRemoveBalance = (id: number | number): void => {
-	emit('remove-item', id)
+const onClickRemoveBalanceItem = (id: number | number): void => {
+	emit('remove-balance-item', id)
 }
 </script>
 
 <template>
   <LSection
 		:title="title"
-		:subtitle="!data.length ? 'Список порожній' : undefined"
+		:subtitle="subtitle"
 	>
 		<VTable
       v-if="data.length"
@@ -76,7 +73,7 @@ const onClickRemoveBalance = (id: number | number): void => {
           <td class="text-right">
             <VBtn
               variant="text"
-              @click="onClickRemoveBalance(item.id)"
+              @click="onClickRemoveBalanceItem(item.id)"
             >
               <VIcon
                 color="red"

@@ -1,4 +1,5 @@
 export { default as LBox } from './LBox.vue'
+export * from './LComponentsTypes'
 export { default as LFooter } from './LFooter.vue'
 export { default as LHeader } from './LHeader.vue'
 export { default as LMain } from './LMain.vue'

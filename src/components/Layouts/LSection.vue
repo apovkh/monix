@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { LBox } from './'
+
 defineProps<{
   title?: string
   subtitle?: string
 }>()
-
 </script>
 
 <template>

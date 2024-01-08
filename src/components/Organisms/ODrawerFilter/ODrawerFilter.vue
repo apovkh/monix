@@ -3,21 +3,12 @@ import { VRadioGroup, VSwitch } from 'vuetify/components'
 
 import { useVModel } from '@vueuse/core'
 
-import { useCategory } from '../../../composables/useCategory'
 import { useFiltersStore } from '../../../stores/filters'
-import {
-	CATEGORY_TYPES_COSTS,
-	CATEGORY_TYPES_INCOME,
-	DATE_TYPES
-} from '../../../types'
 import { ADrawer } from '../../'
 
-const props = withDefaults(
-	defineProps<{
-		modelValue: boolean
-  }>(),
-	{}
-)
+import type { IODrawerFilterPropsTypes } from './'
+
+const props = defineProps<IODrawerFilterPropsTypes>()
 
 defineEmits<{
   (e: 'update:modelValue', value: boolean): void

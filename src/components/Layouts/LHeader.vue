@@ -60,7 +60,7 @@ onMounted(async () => {
   </header>
 </template>
 
-<style scoped>
+<style lang="scss">
   .l-header {
     @apply
       sticky

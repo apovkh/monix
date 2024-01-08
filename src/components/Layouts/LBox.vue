@@ -1,5 +1,5 @@
 <script setup lang="ts">
-
+//
 </script>
 
 <template>
@@ -8,7 +8,7 @@
   </div>
 </template>
 
-<style scoped>
+<style lang="scss">
   .l-box {
     /* @apply */
       /* px-2 */

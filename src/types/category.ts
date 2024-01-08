@@ -23,7 +23,7 @@ export interface ICategory {
 export interface IBalanceItem {
   income?: boolean
   costs?: boolean
-	date: any
+	date: string | Date
   category: CATEGORY_TYPES_COSTS | CATEGORY_TYPES_INCOME
   icon?: string
 	amount: number | string

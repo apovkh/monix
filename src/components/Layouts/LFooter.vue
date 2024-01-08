@@ -19,7 +19,7 @@ const walletStore = useWalletStore()
 
 const isError = ref<boolean>(false)
 
-const validAmount = () => {
+const validAmount = (): boolean => {
 	if (!walletStore.amount || walletStore.amount < 0) {
 		isError.value = true
 		return false
@@ -28,13 +28,13 @@ const validAmount = () => {
 	return true
 }
 
-const onClickIncome = () => {
+const onClickIncome = (): void => {
 	if (validAmount()) {
 		walletStore.income.isOpenDialog = true
 	}
 }
 
-const onClickAddCost = () => {
+const onClickAddCost = (): void => {
 	if (validAmount()) {
 		walletStore.cost.isOpenDialog = true
 	}
@@ -91,7 +91,7 @@ onMounted(async () => {
   </footer>
 </template>
 
-<style scoped>
+<style lang="scss">
   .l-footer {
     @apply
       sticky
@@ -103,15 +103,14 @@ onMounted(async () => {
       z-1000
     ;
 
-      &-inner {
-        @apply
+    &-inner {
+      @apply
         flex
         justify-between
         items-center
         rounded-full
 
         gap-3
-
       ;
     }
   }

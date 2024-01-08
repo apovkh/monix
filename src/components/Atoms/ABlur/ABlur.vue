@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { type IABlurProps } from './'
+import type { IABlurProps } from './'
 
-const props = withDefaults(
+withDefaults(
 	defineProps<IABlurProps>(),
 	{
 		radiusSize: 'full',
@@ -22,7 +22,7 @@ const props = withDefaults(
 	</div>
 </template>
 
-<style scoped>
+<style lang="scss">
 	.a-blur {
 		@apply
 			relative

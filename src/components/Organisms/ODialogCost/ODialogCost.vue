@@ -8,12 +8,9 @@ import { useWalletStore } from '../../../stores/wallet'
 import type { ICategory } from '../../../types'
 import { ADialog, MCategories } from '../../'
 
-const props = withDefaults(
-	defineProps<{
-		modelValue: boolean
-  }>(),
-	{}
-)
+import type { IODialogCostPropsTypes } from './'
+
+const props = defineProps<IODialogCostPropsTypes>()
 
 defineEmits<{
   (e: 'update:modelValue', value: boolean): void
@@ -75,7 +72,7 @@ const onSelectCategory = (category: ICategory): void => {
 	</ADialog>
 </template>
 
-<style scoped>
+<style lang="scss">
 	.o-dialog-cost {
 		&-title {
 			@apply

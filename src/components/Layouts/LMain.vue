@@ -10,8 +10,6 @@ import LBox from './LBox.vue'
   </main>
 </template>
 
-<style scoped>
-  .l-main {
-    //
-  }
+<style lang="scss">
+  //
 </style>

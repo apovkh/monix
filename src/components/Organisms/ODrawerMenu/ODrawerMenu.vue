@@ -7,12 +7,9 @@ import { useMenuStore } from '../../../stores/menu'
 import type { DATA_SCREEN_VIEW } from '../../../types'
 import { ADrawer } from '../../'
 
-const props = withDefaults(
-	defineProps<{
-		modelValue: boolean
-  }>(),
-	{}
-)
+import type { IODrawerMenuPropsTypes } from './'
+
+const props = defineProps<IODrawerMenuPropsTypes>()
 
 defineEmits<{
   (e: 'update:modelValue', value: boolean): void

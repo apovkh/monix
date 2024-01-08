@@ -6,14 +6,9 @@ import {
 import { useWalletStore } from '../../../stores/wallet'
 import type { CATEGORY_TYPES_COSTS, ICategory } from '../../types'
 
-const props = withDefaults(
-	defineProps<{
-		data: ICategory[]
-  }>(),
-	{
-		//
-	}
-)
+import type { IMCategoryPropsTypes } from './'
+
+defineProps<IMCategoryPropsTypes>()
 
 const emit = defineEmits<{
   (e: 'category', value: CATEGORY_TYPES_COSTS): void
@@ -21,17 +16,16 @@ const emit = defineEmits<{
 
 const walletStore = useWalletStore()
 
-const onCategorySelect = (category: ICategory): void => {
+const onCategorySelect = (category: IMCategoryPropsTypes['data']): void => {
 	walletStore.setSelectedCategory(category)
 	emit('category', category)
 }
 
-const categoryColor = (item): string => {
+const categoryColor = (item: IMCategoryPropsTypes['data']): string => {
 	return item.category === walletStore.cost.selectedCategory.category
 		? item.color
 		: ''
 }
-
 </script>
 
 <template>
@@ -58,7 +52,7 @@ const categoryColor = (item): string => {
 	</div>
 </template>
 
-<style scoped>
+<style lang="scss">
 	.m-categories {
 		@apply
 			grid
