@@ -12,7 +12,7 @@ import { useIndexPage } from './handlers'
 const {
 	chartData,
 	dataTitle,
-	existCatgories,
+	dataSubtitle,
 	filteredBalance,
 	isDataTableView,
 	isDataChartView,
@@ -28,14 +28,15 @@ const {
       v-if="isDataTableView"
       :data="filteredBalance"
       :title="dataTitle"
+			:subtitle="dataSubtitle"
 			@remove-balance-item="onRemoveBalanceItem"
     />
 
-    <AChart
+		<AChart
 			v-if="isDataChartView"
-			:title="dataTitle"
-			:categories="existCatgories"
 			:chart-data="chartData"
+			:title="dataTitle"
+			:subtitle="dataSubtitle"
 		/>
   </div>
 

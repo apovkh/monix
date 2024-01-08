@@ -1,21 +1,29 @@
 import { computed, onMounted } from 'vue'
 import type { ComputedRef } from 'vue'
 
+import type { IADialogPropsTypes, LSectionPropsTypes } from '../../components'
 import { useCategory } from '../../composables/useCategory'
 import { useFiltersStore, useMenuStore, useWalletStore } from '../../stores'
 import { DATA_SCREEN_VIEW, type IBalanceItem } from '../../types'
 
 export class IndexPage {
 	public readonly chartData: any
-	public readonly isOpenCostDialog: boolean
-	public readonly isOpenIncomeDialog: boolean
-	public readonly dataTitle: ComputedRef<string>
+	public readonly isOpenCostDialog: ComputedRef<
+		IADialogPropsTypes['modelValue']
+	>
+
+	public readonly isOpenIncomeDialog: ComputedRef<
+		IADialogPropsTypes['modelValue']
+	>
+
+	public readonly dataTitle: ComputedRef<LSectionPropsTypes['title']>
+	public readonly dataSubtitle: ComputedRef<LSectionPropsTypes['subtitle']>
 	public readonly isDataChartView: ComputedRef<boolean>
 	public readonly isDataTableView: ComputedRef<boolean>
-	public readonly existCatgories: ComputedRef<IBalanceItem[] | []>
-	public readonly filteredBalance: IBalanceItem[] | []
+	public readonly filteredBalance: ComputedRef<IBalanceItem[] | []>
 
 	private readonly balanceCount: ComputedRef<number[]>
+	private readonly existCatgories: ComputedRef<IBalanceItem[] | []>
 
 	private readonly menuStore: ReturnType<typeof useMenuStore>
 	private readonly walletStore: ReturnType<typeof useWalletStore>
@@ -65,18 +73,17 @@ export class IndexPage {
 				}
 			})
 
-			console.log('groupedData: ', groupedData)
-
 			return Object.values(groupedData)
 		})
 
 		this.isDataChartView = computed(() => {
-			return this.menuStore.view === DATA_SCREEN_VIEW.Chart
+			return this.menuStore.view === DATA_SCREEN_VIEW.Chart &&
+				!!this.balanceCount.value.reduce((acc, i) => acc + i, 0)
 		})
 
 		this.isDataTableView = computed(() => {
 			return this.menuStore.view === DATA_SCREEN_VIEW.Table
-	 })
+	 	})
 
 		this.balanceCount = computed(() => {
 			return this.existCatgories.value.map(item => {
@@ -103,9 +110,14 @@ export class IndexPage {
 			}
 		})
 
-		this.filteredBalance = this.filtersStore.filteredBalance
-		this.isOpenCostDialog = this.walletStore.cost.isOpenDialog
-		this.isOpenIncomeDialog = this.walletStore.income.isOpenDialog
+		this.dataSubtitle = computed(() => {
+			return !this.isDataChartView ? 'Дані відсутні' : undefined
+		})
+
+		this.filteredBalance = computed(() => this.filtersStore.filteredBalance)
+
+		this.isOpenCostDialog = computed(() => this.walletStore.cost.isOpenDialog)
+		this.isOpenIncomeDialog = computed(() => this.walletStore.income.isOpenDialog)
 
 		onMounted(async () => {
 			await this.walletStore.getBalance()
