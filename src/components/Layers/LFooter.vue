@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { onMounted, ref, watch } from 'vue'
 import {
 	VBtn,
 	VTextField
@@ -9,49 +8,30 @@ import {
 	mdiMinus,
 	mdiPlus
 } from '@mdi/js'
+import { useVModel } from '@vueuse/core'
 
-import { useWalletStore } from '../../stores/wallet'
 import { ABlur } from '../'
 
+import type { ILFooterPropsTypes } from './LayersTypes'
 import { LBox } from './'
 
-const walletStore = useWalletStore()
+const props = defineProps<ILFooterPropsTypes>()
 
-const isError = ref<boolean>(false)
+const emit = defineEmits<{
+  (e: 'click-income', value: MouseEvent): void
+  (e: 'click-cost', value: MouseEvent): void
+  (e: 'update:amount', value: number | null): void
+}>()
 
-const validAmount = (): boolean => {
-	if (!walletStore.amount || walletStore.amount < 0) {
-		isError.value = true
-		return false
-	}
-	isError.value = false
-	return true
+const proxiedModelValueAmount = useVModel(props, 'amount', emit)
+
+const onClickIncome = (e: MouseEvent): void => {
+	emit('click-income', e)
 }
 
-const onClickIncome = (): void => {
-	if (validAmount()) {
-		walletStore.income.isOpenDialog = true
-	}
+const onClickAddCost = (e: MouseEvent): void => {
+	emit('click-cost', e)
 }
-
-const onClickAddCost = (): void => {
-	if (validAmount()) {
-		walletStore.cost.isOpenDialog = true
-	}
-}
-
-watch(walletStore.amount, (value) => {
-	if (value && value > 0) {
-		isError.value = false
-	} else {
-		isError.value = true
-	}
-})
-
-onMounted(async () => {
-	await walletStore.getBalance()
-})
-
 </script>
 
 <template>
@@ -68,14 +48,14 @@ onMounted(async () => {
           </VBtn>
 
           <VTextField
-            v-model="walletStore.amount"
+            v-model="proxiedModelValueAmount"
             label="Сума"
             type="number"
             rounded
             variant="outlined"
             :hide-details="true"
             validate-on="blur"
-            :error="isError"
+            :error="isErrorAmount"
           />
 
           <VBtn

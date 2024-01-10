@@ -1,35 +1,27 @@
 <script setup lang="ts">
-import { computed, onMounted } from 'vue'
 import { VBtn } from 'vuetify/components'
 
 import { mdiFilterOutline, mdiMenu } from '@mdi/js'
 
-import { useWalletStore } from '../../stores/wallet'
 import { ABlur } from '../'
 
+import type { ILHeaderPropsTypes } from './LayersTypes'
 import LBox from './LBox.vue'
 
+defineProps<ILHeaderPropsTypes>()
+
 const emit = defineEmits<{
-  (e: 'menu:click', value: MouseEvent): void
-  (e: 'filter:click', value: MouseEvent): void
+  (e: 'click-menu', value: MouseEvent): void
+  (e: 'click-filter', value: MouseEvent): void
 }>()
 
-const walletStore = useWalletStore()
-
-const formatBalance = computed<string>(() => walletStore.totalBalance
-	.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','))
-
-const onMenuCLick = (e): void => {
-	emit('menu:click', e)
+const onMenuCLick = (e: MouseEvent): void => {
+	emit('click-menu', e)
 }
 
-const onFilterCLick = (e): void => {
-	emit('filter:click', e)
+const onFilterCLick = (e: MouseEvent): void => {
+	emit('click-filter', e)
 }
-
-onMounted(async () => {
-	await walletStore.getBalance()
-})
 </script>
 
 <template>
@@ -46,7 +38,7 @@ onMounted(async () => {
           <div class="mr-auto text-2xl text-center">
             <div class="text-xs">Загальний баланс</div>
             <div class="text-2xl transform font-bold">
-              {{ formatBalance }}
+              {{ balance }}
             </div>
           </div>
 

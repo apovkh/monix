@@ -1,4 +1,4 @@
 export * from './Atoms'
-export * from './Layouts'
+export * from './Layers'
 export * from './Molecules'
 export * from './Organisms'
