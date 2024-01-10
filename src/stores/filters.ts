@@ -9,8 +9,21 @@ import { filterByDate } from '../utils/dataFilter'
 
 import { useWalletStore } from './wallet'
 
+export interface IFilterStoreState {
+	walletStore: ReturnType<typeof useWalletStore>
+	filters: {
+		income: boolean
+		costs: boolean
+		date: DATE_TYPES
+	}
+	dateFiltersData: {
+		label: string
+		value: DATE_TYPES
+	}[]
+}
+
 export const useFiltersStore = defineStore('filters', {
-	state: () => ({
+	state: (): IFilterStoreState => ({
 		walletStore: useWalletStore(),
 		filters: {
 			income: true,

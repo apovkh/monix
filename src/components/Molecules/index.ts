@@ -1,1 +1,1 @@
-export { MCategories } from './MCategories'
+export * from './MCategories'

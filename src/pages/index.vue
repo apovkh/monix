@@ -6,7 +6,7 @@ import {
 	ODialogIncome
 } from '../components'
 
-import { useIndexPage } from './handlers'
+import { useIndexPageData } from './handlers'
 
 // eslint-disable-next-line @typescript-eslint/typedef
 const {
@@ -19,7 +19,7 @@ const {
 	isOpenCostDialog,
 	isOpenIncomeDialog,
 	removeBalanceItem: onRemoveBalanceItem
-} = useIndexPage()
+} = useIndexPageData()
 </script>
 
 <template>

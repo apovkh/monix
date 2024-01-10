@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-
 import {
 	ABlur,
 	LFooter,
@@ -10,23 +8,32 @@ import {
 	ODrawerMenu
 } from '../components'
 
-import { useDefaultLayout } from './handlers'
+import { useDefaultLayoutData } from './handlers'
 
 // eslint-disable-next-line @typescript-eslint/typedef
 const {
+	amount,
+	viewData,
+	viewDataType,
+	isErrorAmount,
 	isOpenMenuDrawer,
+	formatedBalance,
 	isOpenFiltersDrawer,
 	headerMenuClick: onHeaderMenuClick,
-	filterMenuClick: onFilterMenuClick
-} = useDefaultLayout()
+	filterMenuClick: onFilterMenuClick,
+	addIncome: onClickIncome,
+	addCost: onClickAddCost,
+	changeView: onClickMenuView
+} = useDefaultLayoutData()
 </script>
 
 <template>
   <div class="t-overlay" />
   <div class="l-wrapper">
     <LHeader
-      @menu:click="onHeaderMenuClick"
-      @filter:click="onFilterMenuClick"
+      :balance="formatedBalance"
+      @click-menu="onHeaderMenuClick"
+      @click-filter="onFilterMenuClick"
     />
     <LMain>
       <ABlur
@@ -38,10 +45,20 @@ const {
       </ABlur>
     </LMain>
 
-    <LFooter />
+    <LFooter
+      v-model:amount="amount"
+      :is-error-amount="isErrorAmount"
+      @click-cost="onClickAddCost"
+      @click-income="onClickIncome"
+    />
   </div>
 
-  <ODrawerMenu v-model="isOpenMenuDrawer" />
+  <ODrawerMenu
+    v-model="isOpenMenuDrawer"
+    :data="viewData"
+    :view="viewDataType"
+    @click-view="onClickMenuView"
+  />
   <ODrawerFilter v-model="isOpenFiltersDrawer" />
 </template>
 

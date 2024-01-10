@@ -1,1 +1,1 @@
-export { useIndexPage } from './useIndexPage'
+export { useIndexPageData } from './useIndexPageData'

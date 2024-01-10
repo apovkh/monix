@@ -1,23 +1,19 @@
 import { computed, onMounted } from 'vue'
 import type { ComputedRef } from 'vue'
 
-import type { IADialogPropsTypes, LSectionPropsTypes } from '../../components'
+import type { IADialogPropsTypes, ILSectionPropsTypes } from '../../components'
 import { useCategory } from '../../composables/useCategory'
 import { useFiltersStore, useMenuStore, useWalletStore } from '../../stores'
 import { DATA_SCREEN_VIEW, type IBalanceItem } from '../../types'
 
-export class IndexPage {
+export class IndexPageData {
+	public isOpenCostDialog: ComputedRef<IADialogPropsTypes['modelValue']>
+	public isOpenIncomeDialog: ComputedRef<IADialogPropsTypes['modelValue']>
+
 	public readonly chartData: any
-	public readonly isOpenCostDialog: ComputedRef<
-		IADialogPropsTypes['modelValue']
-	>
 
-	public readonly isOpenIncomeDialog: ComputedRef<
-		IADialogPropsTypes['modelValue']
-	>
-
-	public readonly dataTitle: ComputedRef<LSectionPropsTypes['title']>
-	public readonly dataSubtitle: ComputedRef<LSectionPropsTypes['subtitle']>
+	public readonly dataTitle: ComputedRef<ILSectionPropsTypes['title']>
+	public readonly dataSubtitle: ComputedRef<ILSectionPropsTypes['subtitle']>
 	public readonly isDataChartView: ComputedRef<boolean>
 	public readonly isDataTableView: ComputedRef<boolean>
 	public readonly filteredBalance: ComputedRef<IBalanceItem[] | []>
@@ -116,8 +112,15 @@ export class IndexPage {
 
 		this.filteredBalance = computed(() => this.filtersStore.filteredBalance)
 
-		this.isOpenCostDialog = computed(() => this.walletStore.cost.isOpenDialog)
-		this.isOpenIncomeDialog = computed(() => this.walletStore.income.isOpenDialog)
+		this.isOpenCostDialog = computed(() => {
+			return this.walletStore.cost.isOpenDialog
+		})
+
+		this.isOpenIncomeDialog = computed(() => {
+			return this.walletStore.income.isOpenDialog
+		})
+
+		this.removeBalanceItem = this.removeBalanceItem.bind(this)
 
 		onMounted(async () => {
 			await this.walletStore.getBalance()
@@ -129,6 +132,6 @@ export class IndexPage {
 	}
 }
 
-export function useIndexPage (): IndexPage {
-	return new IndexPage()
+export function useIndexPageData (): IndexPageData {
+	return new IndexPageData()
 }

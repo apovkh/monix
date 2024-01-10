@@ -2,12 +2,16 @@ import { defineStore } from 'pinia'
 
 import { mdiChartArc, mdiTableLarge } from '@mdi/js'
 
-import {
-	DATA_SCREEN_VIEW
-} from '../types'
+import type { IODrawerMenuPropsTypes } from '../components'
+import { DATA_SCREEN_VIEW } from '../types'
+
+export interface IMenuStoreState {
+	view: DATA_SCREEN_VIEW
+	viewData: IODrawerMenuPropsTypes['data']
+}
 
 export const useMenuStore = defineStore('menu', {
-	state: () => ({
+	state: (): IMenuStoreState => ({
 		view: DATA_SCREEN_VIEW.Table,
 		viewData: [
 			{

@@ -1,4 +1,4 @@
-export type { IADialogPropsTypes } from '../../'
+import type { IADialogPropsTypes } from '../../'
 
 export interface IODialogCostPropsTypes {
   modelValue: IADialogPropsTypes['modelValue']

@@ -3,7 +3,6 @@ import { VBtn } from 'vuetify/components'
 
 import { useVModel } from '@vueuse/core'
 
-import { useMenuStore } from '../../../stores/menu'
 import type { DATA_SCREEN_VIEW } from '../../../types'
 import { ADrawer } from '../../'
 
@@ -11,16 +10,15 @@ import type { IODrawerMenuPropsTypes } from './'
 
 const props = defineProps<IODrawerMenuPropsTypes>()
 
-defineEmits<{
+const emit = defineEmits<{
   (e: 'update:modelValue', value: boolean): void
+  (e: 'click-view', value: DATA_SCREEN_VIEW): void
 }>()
 
-const proxiedModelValue = useVModel(props, 'modelValue')
-
-const menuStore = useMenuStore()
+const proxiedModelValue = useVModel(props, 'modelValue', emit)
 
 const onClickView = (view: DATA_SCREEN_VIEW): void => {
-	menuStore.setView(view)
+	emit('click-view', view)
 	proxiedModelValue.value = false
 }
 </script>
@@ -34,27 +32,27 @@ const onClickView = (view: DATA_SCREEN_VIEW): void => {
 			$attrs.class
 		]"
   >
-	<div class="o-drawer-menu__group">
+		<div class="o-drawer-menu__group">
 			<h3 class="o-drawer-menu__group-title">Вигляд</h3>
 			<template
-				v-for="view in menuStore.viewData"
-				:key="view.value"
+				v-for="item in data"
+				:key="item.value"
 			>
 				<div class="o-drawer-menu__group-item">
 					<VBtn
 						class="w-full"
-						:variant="menuStore.view === view.value
+						:variant="view === item.value
 							? 'flat'
 							: 'text'
 						"
-						:color="menuStore.view === view.value
+						:color="view === item.value
 							? 'green'
 							: 'text'
 						"
-						:prepend-icon="view.icon"
-						@click="onClickView(view.value)"
+						:prepend-icon="item.icon"
+						@click="onClickView(item.value)"
 					>
-						{{ view.label }}
+						{{ item.label }}
 					</VBtn>
 				</div>
 			</template>
