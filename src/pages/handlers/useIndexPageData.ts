@@ -7,8 +7,8 @@ import { useFiltersStore, useMenuStore, useWalletStore } from '../../stores'
 import { DATA_SCREEN_VIEW, type IBalanceItem } from '../../types'
 
 export class IndexPageData {
-	public isOpenCostDialog: ComputedRef<IADialogPropsTypes['modelValue']>
-	public isOpenIncomeDialog: ComputedRef<IADialogPropsTypes['modelValue']>
+	public isOpenCostDialog: WritableComputedRef<IADialogPropsTypes['modelValue']>
+	public isOpenIncomeDialog: WritableComputedRef<IADialogPropsTypes['modelValue']>
 
 	public readonly chartData: any
 
@@ -112,14 +112,23 @@ export class IndexPageData {
 
 		this.filteredBalance = computed(() => this.filtersStore.filteredBalance)
 
-		this.isOpenCostDialog = computed(() => {
-			return this.walletStore.cost.isOpenDialog
+		this.isOpenCostDialog = computed({
+			get: () => {
+				return this.walletStore.cost.isOpenDialog
+			},
+			set: (value: boolean) => {
+				this.walletStore.cost.isOpenDialog = value
+			}
 		})
 
-		this.isOpenIncomeDialog = computed(() => {
-			return this.walletStore.income.isOpenDialog
+		this.isOpenIncomeDialog = computed({
+			get: () => {
+				return this.walletStore.income.isOpenDialog
+			},
+			set: (value: boolean) => {
+				this.walletStore.income.isOpenDialog = value
+			}
 		})
-
 		this.removeBalanceItem = this.removeBalanceItem.bind(this)
 
 		onMounted(async () => {

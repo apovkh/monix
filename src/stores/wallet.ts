@@ -1,4 +1,3 @@
-import Localbase from 'localbase'
 import { defineStore } from 'pinia'
 import { v4 as uuidv4 } from 'uuid'
 
@@ -15,8 +14,6 @@ import {
 import Localbase from '../utils/localbase/index'
 
 const db = new Localbase('monix')
-
-const db = new Localbase('db')
 
 export const useWalletStore = defineStore('wallet', {
 	state: () => ({

@@ -58,14 +58,6 @@ export class DefaultLayoutData {
 		this.addIncome = this.addIncome.bind(this)
 		this.addCost = this.addCost.bind(this)
 
-		watch(this.amount, (value: ILFooterPropsTypes['amount']) => {
-			if (value && value > 0) {
-				this.isErrorAmount.value = false
-			} else {
-				this.isErrorAmount.value = true
-			}
-		})
-
 		onMounted(async () => {
 			await this.walletStore.getBalance()
 		})
