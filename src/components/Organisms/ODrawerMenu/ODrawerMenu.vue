@@ -46,7 +46,7 @@ const onClickView = (view: DATA_SCREEN_VIEW): void => {
 							: 'text'
 						"
 						:color="view === item.value
-							? 'green'
+							? 'primary'
 							: 'text'
 						"
 						:prepend-icon="item.icon"

@@ -50,6 +50,11 @@ const onCloseClick = (): void => {
 
 <style lang="scss">
 	.a-drawer {
+		@apply
+			bg-background
+			text-white
+		;
+
 		&-header {
 			@apply
 				p-1

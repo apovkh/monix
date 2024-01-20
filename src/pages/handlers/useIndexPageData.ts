@@ -90,7 +90,7 @@ export class IndexPageData {
 		this.chartData = computed(() => {
 			return {
 				labels: this.existCatgories.value.map(item => {
-					return item.category.label
+					return item.category!.label
 				}),
 				datasets: [
 					{

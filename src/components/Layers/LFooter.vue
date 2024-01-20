@@ -61,7 +61,7 @@ const onClickAddCost = (e: MouseEvent): void => {
           <VBtn
             size="x-large"
             class="px-0"
-            color="orange"
+            color="red"
             :icon="mdiMinus"
             @click="onClickAddCost"
           />

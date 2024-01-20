@@ -2,8 +2,8 @@ export default defineNuxtConfig({
 	srcDir: './src',
 	ssr: false,
 	modules: [
-		'nuxt-windicss',
 		'nuxt-vitest',
+		'@unocss/nuxt',
 		'@kevinmarrec/nuxt-pwa',
 		'@pinia/nuxt'
 	],

@@ -3,19 +3,25 @@ import * as components from 'vuetify/components'
 import * as directives from 'vuetify/directives'
 import { aliases, mdi } from 'vuetify/lib/iconsets/mdi-svg'
 
+import '../scss/main.scss'
+
 import { defineNuxtPlugin } from '#app'
 
 export default defineNuxtPlugin((nuxtApp) => {
 	const vuetify = createVuetify({
 		theme: {
-			defaultTheme: 'dark',
+			defaultTheme: 'monix',
 			themes: {
-				dark: true,
-				colors: {
-					background: '#161719',
-					primary: '#88B4B3',
-					surface: '#FFFFFF',
-					secondary: '#E7B262'
+				monix: {
+					dark: true,
+					colors: {
+						background: '#202123',
+						primary: '#66C7C5',
+						surface: '#FFFFFF',
+						secondary: '#E7B262',
+						red: '#E77262',
+						green: '#90CA81'
+					}
 				}
 			}
 		},

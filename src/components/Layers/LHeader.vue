@@ -32,6 +32,7 @@ const onFilterCLick = (e: MouseEvent): void => {
           <VBtn
             :icon="mdiMenu"
             class="mr-auto"
+            color="primary"
             @click="onMenuCLick"
           />
 
@@ -44,6 +45,7 @@ const onFilterCLick = (e: MouseEvent): void => {
 
           <VBtn
             :icon="mdiFilterOutline"
+            color="primary"
             @click="onFilterCLick"
           />
         </div>

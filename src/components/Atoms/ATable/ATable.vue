@@ -40,22 +40,23 @@ const onClickRemoveBalanceItem = (id: number | number): void => {
           v-for="item in data"
           :key="item.date"
           :class="[
-            { 'bg-green-darken-4': item.income },
-            'text-sm'
+            { 'bg-green': item.income },
+            'text-sm bg-background'
           ]"
         >
           <td>
-            <VIcon :icon="item.icon" /> <br>
-            <span class="flex-shrink-0 mt-2 d-inline-block text-xs opacity-50">
-                {{ item.date }}
-              </span>
+            <VIcon :icon="item.icon" />
           </td>
           <td>
-            <div class="inline-flex">
-              <span class="flex-shrink-0">
-                {{ item.amount }} <small class="opacity-50">UAH</small>
-              </span>
-            </div>
+              <div>
+                {{ item.amount }}
+                <small class="opacity-50">UAH</small>
+              </div>
+              <span
+                class="-mt-4 d-inline-block text-xs opacity-50"
+              >
+              {{ item.date }}
+            </span>
           </td>
           <td>
             <VTooltip

@@ -13,10 +13,16 @@ import {
 
 import {
 	CATEGORY_TYPES_COSTS,
-	CATEGORY_TYPES_INCOME
+	CATEGORY_TYPES_INCOME,
+	type ICategory
 } from '../types'
 
-export function useCategory (): any {
+export type TUseCategory = Record<
+	CATEGORY_TYPES_COSTS | CATEGORY_TYPES_INCOME,
+	ICategory
+>
+
+export function useCategory (): TUseCategory {
 	return computed(() => ({
 		[CATEGORY_TYPES_COSTS.Food]: {
 			color: '#ECEE81',
@@ -64,7 +70,7 @@ export function useCategory (): any {
 			color: '#00ff00',
 			icon: mdiHandCoinOutline,
 			label: 'Надходження',
-			value: CATEGORY_TYPES_INCOME.Income
+			category: CATEGORY_TYPES_INCOME.Income
 		}
 	}))
 }

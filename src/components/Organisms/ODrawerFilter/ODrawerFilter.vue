@@ -35,7 +35,7 @@ const filtersStore = useFiltersStore()
 				label="Надходження"
 				density="compact"
 				hide-details
-				color="success"
+				color="primary"
 				inset
 				/>
 
@@ -43,7 +43,7 @@ const filtersStore = useFiltersStore()
 				v-model="filtersStore.filters.costs"
 				label="Витрати"
 				density="compact"
-				color="success"
+				color="primary"
 				hide-details
 				inset
 			/>
@@ -56,12 +56,15 @@ const filtersStore = useFiltersStore()
 			>
 				<VRadioGroup
 					v-model="filtersStore.filters.date"
+					density="compact"
+					:hide-details="true"
 				>
 					<VRadio
 						:key="filter.value"
 						:label="filter.label"
 						:value="filter.value"
-						color="success"
+						color="primary"
+						class="mb-4"
 					/>
 				</VRadioGroup>
 			</template>

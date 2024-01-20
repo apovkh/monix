@@ -1,8 +1,8 @@
 /// <reference types="vitest" />
 
+import UnoCSS from 'unocss/vite'
 import { defineConfig } from 'vite'
 import vuetify from 'vite-plugin-vuetify'
-import WindiCSS from 'vite-plugin-windicss'
 
 import vue from '@vitejs/plugin-vue'
 
@@ -17,6 +17,6 @@ export default defineConfig({
 	plugins: [
 		vue(),
 		vuetify(),
-		WindiCSS()
+		UnoCSS()
 	]
 })
